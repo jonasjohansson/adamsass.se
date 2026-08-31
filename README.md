@@ -7,13 +7,13 @@ Deploys to https://adamsass.se/ via GitHub Pages on push to `main`.
 
 ## Local preview
 
-```sh
-python3 -m http.server 3000
-# or
-npx serve -l 3000
-```
+Apache already serves it. `DocumentRoot` is `/Users/jonas/GitHub`, so this repo
+is live at:
 
-Then open http://localhost:3000/.
+http://localhost/org/jonasjohansson/adamsass.se/
+
+Nothing to start. All paths in `index.html` are relative, so it works from that
+subdirectory as well as from the domain root.
 
 ## Files
 

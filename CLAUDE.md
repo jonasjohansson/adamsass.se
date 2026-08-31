@@ -44,4 +44,6 @@ the site: pushing to `main` uploads it straight to GitHub Pages.
   `rootMargin`. Pass `--force-prefers-reduced-motion` when screenshotting.
 
 ## Local preview
-`python3 -m http.server 3000`, then http://localhost:3000/.
+Apache serves `/Users/jonas/GitHub` as its DocumentRoot, so this repo is already
+live at http://localhost/org/jonasjohansson/adamsass.se/. Do not start another
+server. Paths in `index.html` are relative so the subdirectory works.
