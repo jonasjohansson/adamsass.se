@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Adam Sass</title>
+
+    <!-- TODO: replace the description once Adam has approved a one-liner. -->
+    <meta name="description" content="Musician working in modern jazz and improvisation, based in Malmo." />
+    <link rel="canonical" href="https://adamsass.se/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Adam Sass" />
+    <meta property="og:title" content="Adam Sass" />
+    <meta property="og:description" content="Musician working in modern jazz and improvisation, based in Malmo." />
+    <meta property="og:url" content="https://adamsass.se/" />
+    <meta property="og:image" content="https://adamsass.se/assets/img/og.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Adam Sass" />
+    <meta name="twitter:description" content="Musician working in modern jazz and improvisation, based in Malmo." />
+    <meta name="twitter:image" content="https://adamsass.se/assets/img/og.jpg" />
+
+    <meta name="theme-color" content="#f2eee5" />
+    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
+    <!-- TODO: generate the raster favicon set (realfavicongenerator.net) and uncomment.
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png" />
+    <link rel="shortcut icon" href="favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="favicon/site.webmanifest" />
+    -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/style.css" />
+  </head>
+
+  <body>
+    <a class="skip" href="#about">Skip to content</a>
+
+    <nav class="nav" id="nav" aria-label="Sections">
+      <a class="nav__name" href="#top">Adam Sass</a>
+      <ul class="nav__list">
+        <li><a href="#about">About</a></li>
+        <li><a href="#listen">Listen</a></li>
+        <li><a href="#works">Works</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <header class="hero" id="top">
+      <p class="hero__eyebrow">Malmo, Sweden</p>
+      <h1 class="hero__name">Adam<br /><em>Sass</em></h1>
+      <!-- TODO: Adam's own one-liner. This is a stand-in. -->
+      <p class="hero__line">
+        Musician working in modern jazz and improvisation. Writing for small
+        ensembles, playing in rooms where the score is only half the plan.
+      </p>
+      <a class="hero__scroll" href="#about" aria-label="Read on">
+        <span class="hero__scroll-rule" aria-hidden="true"></span>
+        Read on
+      </a>
+    </header>
+
+    <main>
+      <section class="section section--about" id="about">
+        <h2 class="section__title">About</h2>
+        <div class="about">
+          <figure class="about__portrait">
+            <!-- TODO: replace with a real portrait. Export at 1200px wide, JPEG + WebP. -->
+            <img
+              src="assets/img/portrait-placeholder.svg"
+              alt="Portrait of Adam Sass"
+              width="900"
+              height="1125"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>TODO: photo credit</figcaption>
+          </figure>
+          <div class="about__text prose">
+            <!-- TODO: all copy below is placeholder. Replace with Adam's bio. -->
+            <p class="lede">
+              Adam Sass is a musician based in Malmo, working across modern jazz,
+              free improvisation and composed music for small ensembles.
+            </p>
+            <p>
+              Placeholder paragraph. Two or three sentences on training, the
+              instruments he plays, and the ensembles he has been part of. Keep
+              it concrete: where he studied, who he plays with, what a set of his
+              actually sounds like.
+            </p>
+            <p>
+              Placeholder paragraph. What he is working on now, and the thread
+              that runs through it. This is the paragraph a promoter reads before
+              deciding to book him, so it should end somewhere specific rather
+              than trailing off into adjectives.
+            </p>
+            <ul class="facts">
+              <li><span>Based in</span> Malmo, Sweden</li>
+              <li><span>Plays</span> TODO: instruments</li>
+              <li><span>Available for</span> TODO: concerts, commissions, sessions</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--listen" id="listen">
+        <h2 class="section__title">Listen</h2>
+        <p class="section__intro">
+          TODO: one line framing what is here. Recordings, live takes, works in
+          progress.
+        </p>
+
+        <!--
+          Click-to-load embeds: nothing is requested from Bandcamp, Spotify or
+          YouTube until the visitor asks for it. Swap data-src for the real
+          embed URL and delete the TODO note.
+        -->
+        <ul class="embeds">
+          <li class="embed">
+            <button
+              class="embed__facade"
+              type="button"
+              data-embed="TODO-bandcamp-album-embed-url"
+              data-title="Bandcamp player"
+            >
+              <span class="embed__label">Bandcamp</span>
+              <span class="embed__title">TODO: release title</span>
+              <span class="embed__meta">TODO: year, label</span>
+              <span class="embed__play" aria-hidden="true">Play</span>
+            </button>
+          </li>
+          <li class="embed">
+            <button
+              class="embed__facade"
+              type="button"
+              data-embed="TODO-spotify-embed-url"
+              data-title="Spotify player"
+            >
+              <span class="embed__label">Spotify</span>
+              <span class="embed__title">TODO: release or playlist</span>
+              <span class="embed__meta">TODO: year</span>
+              <span class="embed__play" aria-hidden="true">Play</span>
+            </button>
+          </li>
+          <li class="embed embed--wide">
+            <button
+              class="embed__facade"
+              type="button"
+              data-embed="TODO-youtube-embed-url"
+              data-title="Video"
+            >
+              <span class="embed__label">Video</span>
+              <span class="embed__title">TODO: live recording</span>
+              <span class="embed__meta">TODO: venue, date</span>
+              <span class="embed__play" aria-hidden="true">Play</span>
+            </button>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section section--works" id="works">
+        <h2 class="section__title">Works</h2>
+        <p class="section__intro">
+          Ensembles, collaborations and long running projects.
+        </p>
+
+        <ul class="works">
+          <li class="work">
+            <h3 class="work__title">
+              <a href="https://peopleinorbit.se/" rel="noopener">People in Orbit</a>
+            </h3>
+            <p class="work__meta">Band</p>
+            <p class="work__text">
+              Modern jazz-rock and electronics from Malmo. Second album
+              <em>Viewpoint</em> out April 2026 on April Records.
+              <!-- TODO: confirm Adam's role in the band and name it here. -->
+            </p>
+          </li>
+
+          <li class="work">
+            <h3 class="work__title">Signs of Presence</h3>
+            <p class="work__meta">Touring project, in development</p>
+            <p class="work__text">
+              A Nordic tour built around graphic scores, reversing the usual
+              order: drawing from what is played rather than playing from what is
+              drawn.
+              <!-- TODO: link once there is a public page, and check with Jonas
+                   before publishing details of an unfunded application. -->
+            </p>
+          </li>
+
+          <li class="work">
+            <h3 class="work__title">TODO: third project</h3>
+            <p class="work__meta">TODO: role, years</p>
+            <p class="work__text">
+              Placeholder. Duplicate this block for each further project, or
+              delete it if two is the honest number.
+            </p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section section--contact" id="contact">
+        <h2 class="section__title">Contact</h2>
+        <div class="contact">
+          <div class="contact__block">
+            <h3>Booking and enquiries</h3>
+            <!-- TODO: confirm which address Adam wants public. -->
+            <p class="contact__big">
+              <a href="mailto:adsass98@gmail.com">adsass98@gmail.com</a>
+            </p>
+          </div>
+          <div class="contact__block">
+            <h3>Elsewhere</h3>
+            <ul class="contact__links">
+              <!-- TODO: real handles, or delete the rows that do not apply. -->
+              <li><a href="#" rel="me noopener">Instagram</a></li>
+              <li><a href="#" rel="me noopener">Bandcamp</a></li>
+              <li><a href="#" rel="me noopener">Spotify</a></li>
+              <li><a href="#" rel="me noopener">YouTube</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <p>Adam Sass, Malmo</p>
+      <p><a href="#top">Back to top</a></p>
+    </footer>
+
+    <script src="assets/script.js" defer></script>
+  </body>
+</html>
