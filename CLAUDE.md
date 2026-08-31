@@ -1,8 +1,9 @@
 # adamsass.se
 
-Personal site for Adam Sass, musician in Malmo, working in modern jazz and
-improvisation. He plays in People in Orbit (peopleinorbit.se, also built here)
-and is a co-applicant on the Signs of Presence tour.
+Personal site for Adam Sass, trumpet player and composer in Malmö. He leads
+People In Orbit (peopleinorbit.se, also built here), co-writes in floats, and
+plays with BEQ, Vidar Orchestra, Spontaneity Quartet and Isildurs Bane. He is
+also co-applicant on the Signs of Presence tour.
 
 Vanilla HTML, CSS and JS. No build step, no framework, no CMS. The repo root is
 the site: pushing to `main` uploads it straight to GitHub Pages.
@@ -11,23 +12,36 @@ the site: pushing to `main` uploads it straight to GitHub Pages.
 - `index.html` — the page, and all copy
 - `assets/style.css` — all styles. Variables at the top, breakpoints at 1100px and 720px
 - `assets/script.js` — nav state, scroll reveal, click-to-load embeds
-- `assets/img/`, `favicon/`, `CNAME`, `.github/workflows/deploy.yml`
+- `assets/img/`, `assets/img/covers/`, `favicon/`, `CNAME`, `.github/workflows/deploy.yml`
 
 ## Design system
 - Paper `#f2eee5`, ink `#17140f`, one accent: rust `#a8452b`. Do not add a second accent.
-- Display type is Instrument Serif, body is Inter. Headings, the lede and the
-  contact address are serif; everything structural is uppercase Inter at 0.75rem
-  with wide letter-spacing.
+- Display type is Instrument Serif, body is Inter. Headings, the lede, record
+  titles and press quotes are serif; everything structural is uppercase Inter at
+  0.75rem with wide letter-spacing.
+- **Photographs are black and white, record sleeves keep their colour.** That is
+  the only colour contrast in the design and it carries the whole page. Convert
+  any new photograph with `-colorspace Gray`.
 - Editorial and quiet on purpose. It sits next to peopleinorbit.se, which is dark
-  and image-heavy, so this one stays light and typographic.
+  and image-led, so this one stays light and typographic.
 
-## Conventions
+## Content rules
+- Every fact on the page traces to a file Adam put in the shared drive at
+  `WWW/adamsass.se`. Do not invent biography, dates, credits, or spellings of
+  people's names. If it is not in those files, ask.
+- His bio was lightly copy-edited for English grammar. Keep his meaning.
+- Press quotes are trimmed but never reworded, and always carry the publication.
 - Copy in English. No em or en dashes: use commas, periods, colons.
-- Everything still unwritten is marked `TODO` in the source. Do not silently
-  invent biography, dates or credits for a real person: leave the TODO standing
-  and ask.
-- Embeds are click-to-load. Nothing is requested from Bandcamp, Spotify or
-  YouTube until a visitor clicks. Keep it that way.
+
+## Gotchas
+- `.credits li` and `.facts li` are flex rows. A bare `<em>` inside one becomes
+  its own flex item and picks up the row gap on both sides, which reads as a
+  typo. Wrap credit text in `.credits__what`.
+- CSS shorthand `gap` on a grid sets the row gap too. `.work` splits
+  `column-gap` and `row-gap` deliberately.
+- A full-page headless screenshot with a very tall window will not reveal the
+  last sections, because the scroll-reveal observer uses a negative bottom
+  `rootMargin`. Pass `--force-prefers-reduced-motion` when screenshotting.
 
 ## Local preview
 `python3 -m http.server 3000`, then http://localhost:3000/.

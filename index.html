@@ -5,14 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Adam Sass</title>
 
-    <!-- TODO: replace the description once Adam has approved a one-liner. -->
-    <meta name="description" content="Musician working in modern jazz and improvisation, based in Malmo." />
+    <meta
+      name="description"
+      content="Trumpet player and composer in Malmö. Leads the electroacoustic jazz group People In Orbit and plays with floats, BEQ, Vidar Orchestra and Isildurs Bane."
+    />
     <link rel="canonical" href="https://adamsass.se/" />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Adam Sass" />
     <meta property="og:title" content="Adam Sass" />
-    <meta property="og:description" content="Musician working in modern jazz and improvisation, based in Malmo." />
+    <meta
+      property="og:description"
+      content="Trumpet player and composer in Malmö. Leads the electroacoustic jazz group People In Orbit."
+    />
     <meta property="og:url" content="https://adamsass.se/" />
     <meta property="og:image" content="https://adamsass.se/assets/img/og.jpg" />
     <meta property="og:image:width" content="1200" />
@@ -20,7 +25,10 @@
     <meta property="og:locale" content="en_GB" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Adam Sass" />
-    <meta name="twitter:description" content="Musician working in modern jazz and improvisation, based in Malmo." />
+    <meta
+      name="twitter:description"
+      content="Trumpet player and composer in Malmö. Leads the electroacoustic jazz group People In Orbit."
+    />
     <meta name="twitter:image" content="https://adamsass.se/assets/img/og.jpg" />
 
     <meta name="theme-color" content="#f2eee5" />
@@ -39,6 +47,19 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/style.css" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "MusicGroup",
+        "name": "Adam Sass",
+        "url": "https://adamsass.se/",
+        "image": "https://adamsass.se/assets/img/og.jpg",
+        "genre": ["Jazz", "Improvised music"],
+        "location": { "@type": "Place", "name": "Malmö, Sweden" },
+        "member": { "@type": "Person", "name": "Adam Sass" }
+      }
+    </script>
   </head>
 
   <body>
@@ -48,92 +69,237 @@
       <a class="nav__name" href="#top">Adam Sass</a>
       <ul class="nav__list">
         <li><a href="#about">About</a></li>
-        <li><a href="#listen">Listen</a></li>
-        <li><a href="#works">Works</a></li>
+        <li><a href="#records">Records</a></li>
+        <li><a href="#video">Video</a></li>
+        <li><a href="#groups">Groups</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
 
     <header class="hero" id="top">
-      <p class="hero__eyebrow">Malmo, Sweden</p>
-      <h1 class="hero__name">Adam<br /><em>Sass</em></h1>
-      <!-- TODO: Adam's own one-liner. This is a stand-in. -->
-      <p class="hero__line">
-        Musician working in modern jazz and improvisation. Writing for small
-        ensembles, playing in rooms where the score is only half the plan.
-      </p>
-      <a class="hero__scroll" href="#about" aria-label="Read on">
-        <span class="hero__scroll-rule" aria-hidden="true"></span>
-        Read on
-      </a>
+      <div class="hero__type">
+        <p class="hero__eyebrow">Trumpet and composition, Malmö</p>
+        <h1 class="hero__name">Adam<br /><em>Sass</em></h1>
+        <p class="hero__line">
+          Leads the electroacoustic jazz group People In Orbit, writes for larger
+          ensembles, and plays with floats, BEQ, Vidar Orchestra and Isildurs Bane.
+        </p>
+      </div>
+      <figure class="hero__figure">
+        <picture>
+          <source srcset="assets/img/hero.webp" type="image/webp" />
+          <img
+            src="assets/img/hero.jpg"
+            alt="Adam Sass playing trumpet on stage"
+            width="2000"
+            height="1334"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </picture>
+        <!-- TODO: ask Adam for the photographers' full names. -->
+        <figcaption>Photo: Mattias Foto</figcaption>
+      </figure>
     </header>
 
     <main>
-      <section class="section section--about" id="about">
+      <section class="section" id="about">
         <h2 class="section__title">About</h2>
         <div class="about">
           <figure class="about__portrait">
-            <!-- TODO: replace with a real portrait. Export at 1200px wide, JPEG + WebP. -->
-            <img
-              src="assets/img/portrait-placeholder.svg"
-              alt="Portrait of Adam Sass"
-              width="900"
-              height="1125"
-              loading="lazy"
-              decoding="async"
-            />
-            <figcaption>TODO: photo credit</figcaption>
+            <picture>
+              <source srcset="assets/img/portrait.webp" type="image/webp" />
+              <img
+                src="assets/img/portrait.jpg"
+                alt="Portrait of Adam Sass"
+                width="1000"
+                height="1500"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+            <figcaption>Photo: Maja Gallstad</figcaption>
           </figure>
+
           <div class="about__text prose">
-            <!-- TODO: all copy below is placeholder. Replace with Adam's bio. -->
             <p class="lede">
-              Adam Sass is a musician based in Malmo, working across modern jazz,
-              free improvisation and composed music for small ensembles.
+              Adam Sass leads the electroacoustic jazz group People In Orbit, where
+              he writes the music and directs the band.
             </p>
             <p>
-              Placeholder paragraph. Two or three sentences on training, the
-              instruments he plays, and the ensembles he has been part of. Keep
-              it concrete: where he studied, who he plays with, what a set of his
-              actually sounds like.
+              He has played with Lina Nyberg, floats, BEQ, Isildurs Bane and Vidar
+              Orchestra, among many others. In 2025 he took second prize in
+              Blåsmusikpriset Jazz, the Swedish award for best young jazz horn
+              player. He studied at the Malmö Academy of Music, with trumpet players
+              and musicians including Tomasz Dąbrowski, Peter Asplund and Bobo
+              Stenson.
             </p>
             <p>
-              Placeholder paragraph. What he is working on now, and the thread
-              that runs through it. This is the paragraph a promoter reads before
-              deciding to book him, so it should end somewhere specific rather
-              than trailing off into adjectives.
+              Alongside the bands he writes for larger ensembles: the big band piece
+              <em>Is There A Garden In My Head?</em>, the suite
+              <em>Sunrise, Meeting, Remembrance</em> for string quartet and jazz
+              ensemble, and music for the film series
+              <em>Framtidens Historia</em>. He plays 80 or more concerts a year: in
+              2025, 82 of them across 96 days in Sweden, Denmark, the Faroe Islands,
+              Iceland and Germany.
             </p>
+
             <ul class="facts">
-              <li><span>Based in</span> Malmo, Sweden</li>
-              <li><span>Plays</span> TODO: instruments</li>
-              <li><span>Available for</span> TODO: concerts, commissions, sessions</li>
+              <li><span>Based in</span> Malmö, Sweden</li>
+              <li><span>Plays</span> Trumpet and flugelhorn</li>
+              <li><span>Studied</span> Malmö Academy of Music</li>
+              <li><span>Labels</span> April Records, Sonde Records, Prophone Naxos</li>
+            </ul>
+
+            <h3 class="subhead">Awards and grants</h3>
+            <ul class="facts facts--tight">
+              <li><span>2025</span> Blåsmusikpriset Jazz, second prize</li>
+              <li><span>2025</span> Stim stipendium</li>
+              <li><span>2024</span> Kungliga Musikaliska Akademien, national grant</li>
+              <li><span>2024</span> Stim Musikdrömmen</li>
+              <li><span>2024</span> Malmö Stad Kulturkraft</li>
+              <li><span></span> Sten K Johnsons Stiftelse</li>
             </ul>
           </div>
         </div>
       </section>
 
-      <section class="section section--listen" id="listen">
-        <h2 class="section__title">Listen</h2>
+      <section class="section" id="records">
+        <h2 class="section__title">Records</h2>
+        <p class="section__intro">Albums with People In Orbit and floats.</p>
+
+        <ul class="records">
+          <li class="record">
+            <a class="record__link" href="https://orcd.co/peopleinorbit-viewpoint" rel="noopener">
+              <picture>
+                <source srcset="assets/img/covers/viewpoint.webp" type="image/webp" />
+                <img
+                  src="assets/img/covers/viewpoint.jpg"
+                  alt="Cover of People In Orbit, Viewpoint"
+                  width="700"
+                  height="700"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+              <h3 class="record__title">Viewpoint</h3>
+              <p class="record__meta">People In Orbit · April Records · 2026</p>
+              <span class="record__cta">Listen</span>
+            </a>
+          </li>
+          <li class="record">
+            <a class="record__link" href="https://linktr.ee/floatsmusik" rel="noopener">
+              <picture>
+                <source srcset="assets/img/covers/filament.webp" type="image/webp" />
+                <img
+                  src="assets/img/covers/filament.jpg"
+                  alt="Cover of floats, Filament"
+                  width="700"
+                  height="700"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+              <h3 class="record__title">Filament</h3>
+              <p class="record__meta">floats · Sonde Records · 2024</p>
+              <span class="record__cta">Listen</span>
+            </a>
+          </li>
+          <li class="record">
+            <a class="record__link" href="https://naxos.lnk.to/PCD317" rel="noopener">
+              <picture>
+                <source srcset="assets/img/covers/close-away.webp" type="image/webp" />
+                <img
+                  src="assets/img/covers/close-away.jpg"
+                  alt="Cover of People In Orbit, Close/Away"
+                  width="700"
+                  height="700"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+              <h3 class="record__title">Close/Away</h3>
+              <p class="record__meta">People In Orbit · Prophone Naxos · 2023</p>
+              <span class="record__cta">Listen</span>
+            </a>
+          </li>
+          <li class="record">
+            <a class="record__link" href="https://linktr.ee/floatsmusik" rel="noopener">
+              <picture>
+                <source srcset="assets/img/covers/roadwork-ahead.webp" type="image/webp" />
+                <img
+                  src="assets/img/covers/roadwork-ahead.jpg"
+                  alt="Cover of floats, Roadwork Ahead"
+                  width="700"
+                  height="700"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+              <h3 class="record__title">Roadwork Ahead</h3>
+              <p class="record__meta">floats · Bagissimo Records · 2020</p>
+              <span class="record__cta">Listen</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="press">
+          <h3 class="subhead">On <em>Viewpoint</em></h3>
+          <blockquote class="quote">
+            <p>An impressive achievement which bodes well for the future of this potent outfit.</p>
+            <cite>Jazz Journal, UK</cite>
+          </blockquote>
+          <blockquote class="quote">
+            <p>An exciting, well-thought-out and sonically unique album of modern European jazz.</p>
+            <cite>Jazz-fun, Germany</cite>
+          </blockquote>
+          <blockquote class="quote">
+            <p>
+              Within its own parameters it is executed with conviction, intelligence
+              and a clear artistic logic.
+            </p>
+            <cite>UK Vibe</cite>
+          </blockquote>
+        </div>
+
+        <h3 class="subhead subhead--spaced">Also appears on</h3>
+        <ul class="credits">
+          <li><span class="credits__year">2026</span><span class="credits__what">Vidar Orchestra, <em>Vidar Plays Vidar</em>, Vidar Records</span></li>
+          <li><span class="credits__year">2026</span><span class="credits__what">Linjalen, <em>Linjalen XIV</em></span></li>
+          <li><span class="credits__year">2025</span><span class="credits__what">BEQ, <em>The Common Denominator</em>, Sonde Records</span></li>
+          <li><span class="credits__year">2025</span><span class="credits__what">Erik Wallander, <em>Gränslandet</em></span></li>
+          <li><span class="credits__year">2024</span><span class="credits__what">Per Gessle, <em>Sällskapssjuk</em>, Parlophone</span></li>
+          <li><span class="credits__year">2023</span><span class="credits__what">Antonio D, <em>Reggae på Svenska</em></span></li>
+          <li><span class="credits__year">2023</span><span class="credits__what">Idyllia, <em>Ypsilon</em>, Grönskan</span></li>
+          <li><span class="credits__year">2022</span><span class="credits__what">Hans Majestät, <em>Frukt Vol. 2</em></span></li>
+          <li><span class="credits__year">2022</span><span class="credits__what">You Thant, <em>In Search Of Incredible</em></span></li>
+          <li><span class="credits__year">2021</span><span class="credits__what">Isildurs Bane, <em>In Disequilibrium</em>, Ataraxia</span></li>
+          <li><span class="credits__year">2021</span><span class="credits__what">Duppy Tales, <em>Nightswimming</em>, Amuse</span></li>
+          <li><span class="credits__year">2021</span><span class="credits__what">True Veins, <em>Imago</em>, Timesaver Productions</span></li>
+          <li><span class="credits__year">2021</span><span class="credits__what">Noa Edwardsson, <em>Feeling Well</em>, 343 Sounds</span></li>
+          <li><span class="credits__year">2020</span><span class="credits__what">Clove Pink Tribe, <em>Init</em>, NB Sounds</span></li>
+          <li><span class="credits__year">2019</span><span class="credits__what">Isildurs Bane, <em>In Amazonia</em>, Ataraxia</span></li>
+          <li><span class="credits__year">2019</span><span class="credits__what">Anton Liljedahl, <em>Summarnætur</em>, Tutl Records</span></li>
+        </ul>
+      </section>
+
+      <section class="section" id="video">
+        <h2 class="section__title">Video</h2>
         <p class="section__intro">
-          TODO: one line framing what is here. Recordings, live takes, works in
-          progress.
+          Nothing loads from YouTube until you press play.
         </p>
 
-        <!--
-          Click-to-load embeds: nothing is requested from Bandcamp, Spotify or
-          YouTube until the visitor asks for it. Swap data-src for the real
-          embed URL and delete the TODO note.
-        -->
         <ul class="embeds">
           <li class="embed">
             <button
               class="embed__facade"
               type="button"
-              data-embed="TODO-bandcamp-album-embed-url"
-              data-title="Bandcamp player"
+              data-embed="https://www.youtube-nocookie.com/embed/Vxd4atK0Lyk?autoplay=1"
+              data-title="People in Orbit performs Signs of Presence"
             >
-              <span class="embed__label">Bandcamp</span>
-              <span class="embed__title">TODO: release title</span>
-              <span class="embed__meta">TODO: year, label</span>
+              <span class="embed__label">People In Orbit</span>
+              <span class="embed__title">Signs of Presence</span>
+              <span class="embed__meta">Live</span>
               <span class="embed__play" aria-hidden="true">Play</span>
             </button>
           </li>
@@ -141,91 +307,134 @@
             <button
               class="embed__facade"
               type="button"
-              data-embed="TODO-spotify-embed-url"
-              data-title="Spotify player"
+              data-embed="https://www.youtube-nocookie.com/embed/SDsLV3x8Hio?autoplay=1"
+              data-title="There's a Garden in My Head, Vidar Orchestra"
             >
-              <span class="embed__label">Spotify</span>
-              <span class="embed__title">TODO: release or playlist</span>
-              <span class="embed__meta">TODO: year</span>
+              <span class="embed__label">Vidar Orchestra</span>
+              <span class="embed__title">There's a Garden in My Head</span>
+              <span class="embed__meta">Composition for big band</span>
               <span class="embed__play" aria-hidden="true">Play</span>
             </button>
           </li>
-          <li class="embed embed--wide">
+          <li class="embed">
             <button
               class="embed__facade"
               type="button"
-              data-embed="TODO-youtube-embed-url"
-              data-title="Video"
+              data-embed="https://www.youtube-nocookie.com/embed/xywivVx0vAk?autoplay=1"
+              data-title="floats, Climb The Tree (Yggdrasil), live at RYMD 2022"
             >
-              <span class="embed__label">Video</span>
-              <span class="embed__title">TODO: live recording</span>
-              <span class="embed__meta">TODO: venue, date</span>
+              <span class="embed__label">floats</span>
+              <span class="embed__title">Climb The Tree (Yggdrasil)</span>
+              <span class="embed__meta">Live at RYMD, 2022</span>
+              <span class="embed__play" aria-hidden="true">Play</span>
+            </button>
+          </li>
+          <li class="embed">
+            <button
+              class="embed__facade"
+              type="button"
+              data-embed="https://www.youtube-nocookie.com/embed/VFJng3vejoQ?autoplay=1"
+              data-title="BEQ, Night Sneakers, live session"
+            >
+              <span class="embed__label">BEQ</span>
+              <span class="embed__title">Night Sneakers</span>
+              <span class="embed__meta">Live session</span>
               <span class="embed__play" aria-hidden="true">Play</span>
             </button>
           </li>
         </ul>
       </section>
 
-      <section class="section section--works" id="works">
-        <h2 class="section__title">Works</h2>
-        <p class="section__intro">
-          Ensembles, collaborations and long running projects.
-        </p>
+      <section class="section" id="groups">
+        <h2 class="section__title">Groups</h2>
+        <p class="section__intro">Where he plays regularly.</p>
 
         <ul class="works">
           <li class="work">
             <h3 class="work__title">
-              <a href="https://peopleinorbit.se/" rel="noopener">People in Orbit</a>
+              <a href="https://peopleinorbit.se/" rel="noopener">People In Orbit</a>
             </h3>
-            <p class="work__meta">Band</p>
-            <p class="work__text">
-              Modern jazz-rock and electronics from Malmo. Second album
-              <em>Viewpoint</em> out April 2026 on April Records.
-              <!-- TODO: confirm Adam's role in the band and name it here. -->
-            </p>
+            <p class="work__meta">Bandleader and composer</p>
+            <div class="work__text">
+              <p>
+                Electroacoustic jazz from Malmö. Adam writes all the music and leads
+                the band. Two albums: <em>Close/Away</em> in 2023 and
+                <em>Viewpoint</em> on April Records in 2026.
+              </p>
+            </div>
           </li>
 
           <li class="work">
-            <h3 class="work__title">Signs of Presence</h3>
-            <p class="work__meta">Touring project, in development</p>
-            <p class="work__text">
-              A Nordic tour built around graphic scores, reversing the usual
-              order: drawing from what is played rather than playing from what is
-              drawn.
-              <!-- TODO: link once there is a public page, and check with Jonas
-                   before publishing details of an unfunded application. -->
-            </p>
+            <h3 class="work__title">
+              <a href="https://linktr.ee/floatsmusik" rel="noopener">floats</a>
+            </h3>
+            <p class="work__meta">Co-composer, since 2017</p>
+            <div class="work__text">
+              <p>
+                A collective of seven musicians from Sweden and Norway, always
+                writing as a group. Lovisa Lidgren writes the lyrics and most of the
+                vocal melodies. Released on Sonde Records.
+              </p>
+              <blockquote class="quote quote--inline">
+                <p>
+                  Listen to floats and do it now.
+                </p>
+                <cite>LIRA Music Magazine, 2025</cite>
+              </blockquote>
+            </div>
           </li>
 
           <li class="work">
-            <h3 class="work__title">TODO: third project</h3>
-            <p class="work__meta">TODO: role, years</p>
-            <p class="work__text">
-              Placeholder. Duplicate this block for each further project, or
-              delete it if two is the honest number.
-            </p>
+            <h3 class="work__title">
+              <a href="https://linktr.ee/beq.band" rel="noopener">BEQ</a>
+            </h3>
+            <p class="work__meta">Trumpet</p>
+            <div class="work__text">
+              <p>
+                Released <em>The Common Denominator</em> on Sonde Records in 2025.
+              </p>
+            </div>
+          </li>
+
+          <li class="work">
+            <h3 class="work__title">Vidar Orchestra</h3>
+            <p class="work__meta">Trumpet and composition</p>
+            <div class="work__text">
+              <p>
+                Big band. Adam's <em>Is There A Garden In My Head?</em> was written
+                for it, and he plays on <em>Vidar Plays Vidar</em>, 2026.
+              </p>
+            </div>
+          </li>
+
+          <li class="work">
+            <h3 class="work__title">Spontaneity Quartet</h3>
+            <p class="work__meta">Trumpet</p>
+            <div class="work__text">
+              <p>Free improvisation.</p>
+            </div>
           </li>
         </ul>
       </section>
 
-      <section class="section section--contact" id="contact">
+      <section class="section" id="contact">
         <h2 class="section__title">Contact</h2>
         <div class="contact">
           <div class="contact__block">
             <h3>Booking and enquiries</h3>
-            <!-- TODO: confirm which address Adam wants public. -->
+            <!-- TODO: confirm with Adam that this is the address he wants public. -->
             <p class="contact__big">
               <a href="mailto:adsass98@gmail.com">adsass98@gmail.com</a>
             </p>
+            <p class="contact__note">Malmö, Sweden</p>
           </div>
           <div class="contact__block">
             <h3>Elsewhere</h3>
             <ul class="contact__links">
-              <!-- TODO: real handles, or delete the rows that do not apply. -->
-              <li><a href="#" rel="me noopener">Instagram</a></li>
-              <li><a href="#" rel="me noopener">Bandcamp</a></li>
-              <li><a href="#" rel="me noopener">Spotify</a></li>
-              <li><a href="#" rel="me noopener">YouTube</a></li>
+              <li><a href="https://peopleinorbit.se/" rel="noopener">People In Orbit</a></li>
+              <li><a href="https://linktr.ee/floatsmusik" rel="noopener">floats</a></li>
+              <li><a href="https://linktr.ee/beq.band" rel="noopener">BEQ</a></li>
+              <!-- TODO: add Adam's own Instagram / YouTube channel when he sends them. -->
             </ul>
           </div>
         </div>
@@ -233,7 +442,7 @@
     </main>
 
     <footer class="foot">
-      <p>Adam Sass, Malmo</p>
+      <p>Adam Sass, Malmö</p>
       <p><a href="#top">Back to top</a></p>
     </footer>
 

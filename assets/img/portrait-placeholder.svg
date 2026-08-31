@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1125" width="900" height="1125" role="img" aria-label="Portrait placeholder">
-  <rect width="900" height="1125" fill="#e9e3d6"/>
-  <g fill="none" stroke="#c4bba7" stroke-width="2">
-    <path d="M0 0 900 1125M900 0 0 1125"/>
-    <rect x="1" y="1" width="898" height="1123"/>
-  </g>
-  <text x="450" y="556" text-anchor="middle" font-family="Georgia, serif" font-size="46" fill="#8b8375">Portrait</text>
-  <text x="450" y="606" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="22" letter-spacing="6" fill="#a89f8c">TODO</text>
-</svg>
