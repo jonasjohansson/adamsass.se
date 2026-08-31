@@ -60,6 +60,23 @@ The item ID is what resolves the record. Verified against
 title `Close/Away`, item number `PCD317`, label `Prophone`. If you change that
 link, verify the same way; a 200 proves nothing there.
 
+## CV
+
+The CV link points at the Google Doc's PDF export endpoint:
+
+```
+https://docs.google.com/document/d/<id>/export?format=pdf
+```
+
+Editing the Doc updates the PDF: there is no file to regenerate or re-upload.
+The Doc is shared as anyone with the link can view, which the export endpoint
+needs. Verified signed out: HTTP 200, `application/pdf`, downloads as
+`Adam Sass, CV.pdf`.
+
+Source is `CV 2026.pdf` in the shared drive, translated into English and set in
+a classic CV structure: contact block, bio, then dated entries under all-caps
+headings.
+
 ## Still open
 
 1. **Photo credits.** Mattias Foto and Maja Gallstad shot the two photographs.
