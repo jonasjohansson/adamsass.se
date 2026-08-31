@@ -2,8 +2,8 @@
 
 Personal site for Adam Sass, trumpet player and composer in Malmö. He leads
 People In Orbit (peopleinorbit.se, also built here), co-writes in floats, and
-plays with BEQ, Vidar Orchestra, Spontaneity Quartet and Isildurs Bane. He is
-also co-applicant on the Signs of Presence tour.
+plays with BEQ, Vidar Orchestra and Spontaneity Quartet. He is also
+co-applicant on the Signs of Presence tour.
 
 Vanilla HTML, CSS and JS. No build step, no framework, no CMS. The repo root is
 the site: pushing to `main` uploads it straight to GitHub Pages.
