@@ -92,15 +92,13 @@
          printed on the page. -->
     <figure class="plate">
       <picture>
-        <source srcset="assets/img/hero.webp" type="image/webp" />
-        <img
-          src="assets/img/hero.jpg"
-          alt="Adam Sass playing trumpet on stage"
-          width="2000"
-          height="1334"
-          fetchpriority="high"
-          decoding="async"
-        />
+        <source type="image/webp" sizes="100vw"
+                srcset="assets/img/hero-800.webp 800w, assets/img/hero.webp 1600w" />
+        <img src="assets/img/hero-1600.jpg"
+             srcset="assets/img/hero-800.jpg 800w, assets/img/hero-1600.jpg 1600w"
+             sizes="100vw"
+             alt="Adam Sass playing trumpet on stage" width="1600" height="1067"
+             fetchpriority="high" decoding="async" />
       </picture>
     </figure>
 
@@ -109,15 +107,13 @@
         <!-- Photo: Maja Gallstad. -->
         <figure class="bio__portrait">
           <picture>
-            <source srcset="assets/img/portrait.webp" type="image/webp" />
-            <img
-              src="assets/img/portrait.jpg"
-              alt="Portrait of Adam Sass"
-              width="1000"
-              height="1500"
-              loading="lazy"
-              decoding="async"
-            />
+            <source type="image/webp" sizes="(max-width: 700px) 240px, 30vw"
+                    srcset="assets/img/portrait-400.webp 400w, assets/img/portrait-800.webp 800w" />
+            <img src="assets/img/portrait-800.jpg"
+                 srcset="assets/img/portrait-400.jpg 400w, assets/img/portrait-800.jpg 800w"
+                 sizes="(max-width: 700px) 240px, 30vw"
+                 alt="Portrait of Adam Sass" width="800" height="1200"
+                 loading="lazy" decoding="async" />
           </picture>
         </figure>
 
@@ -162,8 +158,13 @@
           <li class="record">
             <a class="record__link" href="https://peopleinorbit.bandcamp.com/album/viewpoint" rel="noopener">
               <picture>
-                <source srcset="assets/img/covers/viewpoint.webp" type="image/webp" />
-                <img src="assets/img/covers/viewpoint.jpg" alt="People In Orbit, Viewpoint, April Records 2026" width="700" height="700" loading="lazy" decoding="async" />
+                <source type="image/webp" sizes="(max-width: 700px) 45vw, 23vw"
+                        srcset="assets/img/covers/viewpoint-300.webp 300w, assets/img/covers/viewpoint-600.webp 600w" />
+                <img src="assets/img/covers/viewpoint-600.jpg"
+                     srcset="assets/img/covers/viewpoint-300.jpg 300w, assets/img/covers/viewpoint-600.jpg 600w"
+                     sizes="(max-width: 700px) 45vw, 23vw"
+                     alt="People In Orbit, Viewpoint, April Records 2026" width="600" height="600"
+                     loading="lazy" decoding="async" />
               </picture>
               <h2 class="record__title">Viewpoint</h2>
               <p class="record__meta">People In Orbit<br />April Records, 2026</p>
@@ -172,8 +173,13 @@
           <li class="record">
             <a class="record__link" href="https://floatsmusik.bandcamp.com/album/filament" rel="noopener">
               <picture>
-                <source srcset="assets/img/covers/filament.webp" type="image/webp" />
-                <img src="assets/img/covers/filament.jpg" alt="floats, Filament, Sonde Records 2024" width="700" height="700" loading="lazy" decoding="async" />
+                <source type="image/webp" sizes="(max-width: 700px) 45vw, 23vw"
+                        srcset="assets/img/covers/filament-300.webp 300w, assets/img/covers/filament-600.webp 600w" />
+                <img src="assets/img/covers/filament-600.jpg"
+                     srcset="assets/img/covers/filament-300.jpg 300w, assets/img/covers/filament-600.jpg 600w"
+                     sizes="(max-width: 700px) 45vw, 23vw"
+                     alt="floats, Filament, Sonde Records 2024" width="600" height="600"
+                     loading="lazy" decoding="async" />
               </picture>
               <h2 class="record__title">Filament</h2>
               <p class="record__meta">floats<br />Sonde Records, 2024</p>
@@ -182,8 +188,13 @@
           <li class="record">
             <a class="record__link" href="https://naxosdirect.se/items/close-away-1203059" rel="noopener">
               <picture>
-                <source srcset="assets/img/covers/close-away.webp" type="image/webp" />
-                <img src="assets/img/covers/close-away.jpg" alt="People In Orbit, Close/Away, Prophone 2023" width="700" height="700" loading="lazy" decoding="async" />
+                <source type="image/webp" sizes="(max-width: 700px) 45vw, 23vw"
+                        srcset="assets/img/covers/close-away-300.webp 300w, assets/img/covers/close-away-600.webp 600w" />
+                <img src="assets/img/covers/close-away-600.jpg"
+                     srcset="assets/img/covers/close-away-300.jpg 300w, assets/img/covers/close-away-600.jpg 600w"
+                     sizes="(max-width: 700px) 45vw, 23vw"
+                     alt="People In Orbit, Close/Away, Prophone 2023" width="600" height="600"
+                     loading="lazy" decoding="async" />
               </picture>
               <h2 class="record__title">Close/Away</h2>
               <p class="record__meta">People In Orbit<br />Prophone, 2023</p>
@@ -192,8 +203,13 @@
           <li class="record">
             <a class="record__link" href="https://floatsmusik.bandcamp.com/album/roadwork-ahead" rel="noopener">
               <picture>
-                <source srcset="assets/img/covers/roadwork-ahead.webp" type="image/webp" />
-                <img src="assets/img/covers/roadwork-ahead.jpg" alt="floats, Roadwork Ahead, Bagissimo Records 2020" width="700" height="700" loading="lazy" decoding="async" />
+                <source type="image/webp" sizes="(max-width: 700px) 45vw, 23vw"
+                        srcset="assets/img/covers/roadwork-ahead-300.webp 300w, assets/img/covers/roadwork-ahead-600.webp 600w" />
+                <img src="assets/img/covers/roadwork-ahead-600.jpg"
+                     srcset="assets/img/covers/roadwork-ahead-300.jpg 300w, assets/img/covers/roadwork-ahead-600.jpg 600w"
+                     sizes="(max-width: 700px) 45vw, 23vw"
+                     alt="floats, Roadwork Ahead, Bagissimo Records 2020" width="600" height="600"
+                     loading="lazy" decoding="async" />
               </picture>
               <h2 class="record__title">Roadwork Ahead</h2>
               <p class="record__meta">floats<br />Bagissimo Records, 2020</p>
