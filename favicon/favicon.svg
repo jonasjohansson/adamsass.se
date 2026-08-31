@@ -1,4 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <rect width="64" height="64" rx="8" fill="#17140f"/>
-  <text x="32" y="46" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="42" fill="#a8452b">A</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" fill="#111111"/>
+  <!-- Baseline is explicit: dominant-baseline centres the em box, not the cap,
+       which left the letter sitting low. Cap height is ~0.716em. -->
+  <text x="256" y="435" text-anchor="middle"
+        font-family="Helvetica Neue, Helvetica, Arial, sans-serif"
+        font-weight="700" font-size="500" fill="#ffffff">A</text>
 </svg>
