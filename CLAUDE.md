@@ -15,15 +15,20 @@ the site: pushing to `main` uploads it straight to GitHub Pages.
 - `assets/img/`, `assets/img/covers/`, `favicon/`, `CNAME`, `.github/workflows/deploy.yml`
 
 ## Design system
-- Paper `#f2eee5`, ink `#17140f`, one accent: rust `#a8452b`. Do not add a second accent.
-- Display type is Instrument Serif, body is Inter. Headings, the lede, record
-  titles and press quotes are serif; everything structural is uppercase Inter at
-  0.75rem with wide letter-spacing.
-- **Photographs are black and white, record sleeves keep their colour.** That is
-  the only colour contrast in the design and it carries the whole page. Convert
-  any new photograph with `-colorspace Gray`.
-- Editorial and quiet on purpose. It sits next to peopleinorbit.se, which is dark
-  and image-led, so this one stays light and typographic.
+- **One typeface: EB Garamond.** No sans anywhere. Weight, size and letterspaced
+  caps do all the work. Do not add a second family.
+- Paper `#fbf9f5`, ink `#14120f`. **No accent colour.** The record sleeves are
+  the only colour on the page and the photographs are black and white. If a new
+  element seems to need a colour, it needs better spacing instead.
+- One mannerism only: letterspaced uppercase at `--label-size` for structural
+  labels. It is set once in a shared rule; do not improvise new label styles.
+- Type scale is three steps, and they should stay far apart: the name (~208px at
+  1440), section titles (~64px), text (~19px).
+- Links are ink with a hairline underline that darkens on hover. One treatment
+  sitewide.
+- No copy explains a section. If a heading needs a subtitle telling the reader
+  what the section contains, delete the subtitle. The About section carries no
+  heading at all, on purpose.
 
 ## Content rules
 - Every fact on the page traces to a file Adam put in the shared drive at
@@ -34,11 +39,17 @@ the site: pushing to `main` uploads it straight to GitHub Pages.
 - Copy in English. No em or en dashes: use commas, periods, colons.
 
 ## Gotchas
-- `.credits li` and `.facts li` are flex rows. A bare `<em>` inside one becomes
-  its own flex item and picks up the row gap on both sides, which reads as a
-  typo. Wrap credit text in `.credits__what`.
-- CSS shorthand `gap` on a grid sets the row gap too. `.work` splits
-  `column-gap` and `row-gap` deliberately.
+- `.credits li` is a flex row. A bare `<em>` inside one becomes its own flex
+  item and picks up the row gap on both sides, which reads as a typo. Wrap
+  credit text in `.credits__what`.
+- In `.work`, the title and its role line live together in `.work__head`. They
+  used to be separate grid children with the description spanning two rows,
+  which let a long description stretch the rows and float the role line away
+  from the name it belongs to.
+- CSS shorthand `gap` on a grid sets the row gap as well as the column gap.
+  Check both whenever a label drifts from its heading.
+- Five nav labels have to fit one line at 320px. If you add a sixth, re-measure
+  rather than assuming it wraps gracefully.
 - A full-page headless screenshot with a very tall window will not reveal the
   last sections, because the scroll-reveal observer uses a negative bottom
   `rootMargin`. Pass `--force-prefers-reduced-motion` when screenshotting.

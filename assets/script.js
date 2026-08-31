@@ -53,7 +53,7 @@
   /* --- reveal on scroll --- */
 
   const revealables = document.querySelectorAll(
-    ".section__title, .section__intro, .hero__figure, .about__portrait, .about__text, .record, .press, .credits, .embed, .work, .contact__block"
+    ".section__title, .section__intro, .hero__figure, .about__portrait, .about__text, .record, .press, .credits, .embed, .work, .contact"
   );
 
   if (reduced || !("IntersectionObserver" in window)) {
