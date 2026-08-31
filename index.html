@@ -22,6 +22,7 @@
     <meta property="og:image" content="https://adamsass.se/assets/img/og.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Adam Sass playing trumpet on stage" />
     <meta property="og:locale" content="en_GB" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Adam Sass" />
@@ -30,6 +31,7 @@
       content="Trumpet player and composer in Malmö. Leads the electroacoustic jazz group People In Orbit."
     />
     <meta name="twitter:image" content="https://adamsass.se/assets/img/og.jpg" />
+    <meta name="twitter:image:alt" content="Adam Sass playing trumpet on stage" />
 
     <meta name="theme-color" content="#ffffff" />
     <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
@@ -48,13 +50,31 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "MusicGroup",
+        "@type": "Person",
         "name": "Adam Sass",
         "url": "https://adamsass.se/",
         "image": "https://adamsass.se/assets/img/og.jpg",
-        "genre": ["Jazz", "Improvised music"],
-        "location": { "@type": "Place", "name": "Malmö, Sweden" },
-        "member": { "@type": "Person", "name": "Adam Sass" }
+        "jobTitle": "Musician and composer",
+        "description": "Trumpet player and composer in Malmö. Leads the electroacoustic jazz group People In Orbit.",
+        "email": "mailto:info@adamsass.se",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Malmö",
+          "addressCountry": "SE"
+        },
+        "knowsAbout": ["Jazz", "Improvised music", "Composition", "Trumpet"],
+        "memberOf": [
+          { "@type": "MusicGroup", "name": "People In Orbit", "url": "https://peopleinorbit.se/" },
+          { "@type": "MusicGroup", "name": "floats", "url": "https://floatsmusik.bandcamp.com/" },
+          { "@type": "MusicGroup", "name": "BEQ", "url": "https://linktr.ee/beq.band" },
+          { "@type": "MusicGroup", "name": "Vidar Orchestra" },
+          { "@type": "MusicGroup", "name": "Spontaneity Quartet" }
+        ],
+        "sameAs": [
+          "https://peopleinorbit.se/",
+          "https://peopleinorbit.bandcamp.com/",
+          "https://floatsmusik.bandcamp.com/"
+        ]
       }
     </script>
   </head>

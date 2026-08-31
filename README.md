@@ -6,7 +6,11 @@ One page. Vanilla HTML and CSS, no build step, no framework, no CMS, **no
 JavaScript and no webfont**. The only third-party requests are the four video
 players.
 
-Deploys to https://adamsass.se/ via GitHub Pages on push to `main`.
+Deploys to https://adamsass.se/ on push to `main`. GitHub Pages is set to
+**Deploy from a branch** (`main`, `/`), so it serves the repo root directly.
+There is no Action and no build: the site has no build step, so a workflow
+would only add moving parts. Branch deploy also picks up the `CNAME` file by
+itself, which the Actions build type does not.
 
 ## Local preview
 
@@ -28,7 +32,7 @@ well as from the domain root.
 | `assets/img/covers/` | Record sleeves, JPEG plus WebP. |
 | `favicon/` | Icons. Only `favicon.svg` exists so far. |
 | `CNAME` | Custom domain. |
-| `.github/workflows/deploy.yml` | Uploads the repo root to Pages on push to `main`. |
+| `robots.txt`, `sitemap.xml` | SEO. The sitemap has one URL, because there is one page. |
 
 ## Where the content came from
 
