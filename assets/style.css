@@ -1,27 +1,28 @@
 /* adamsass.se
    Swiss / International Typographic Style: one grotesque, a 12-column modular
-   grid, flush-left ragged-right text, black hairline rules, no ornament.
+   grid, flush-left ragged-right text, no ornament.
 
-   Two rules that are not negotiable:
-   1. No motion. No transitions, no fades, no smooth scrolling. State changes
-      are instant.
-   2. No webfont. Helvetica is on every Mac, Arial is metric-compatible and on
-      every Windows machine, Liberation Sans covers Linux. The page makes zero
-      third-party requests. */
+   Four rules that are not negotiable:
+   1. No motion. No transitions, no fades, no smooth scrolling, nothing sticky.
+      State changes are instant.
+   2. No webfont, no script. Helvetica is on every Mac, Arial is metric
+      compatible and on every Windows machine, Liberation Sans covers Linux.
+   3. No rules. Not one hairline anywhere. Everything is separated by space.
+      A row of hairlines down a list is decoration pretending to be structure.
+   4. Nothing on the page explains the page. No nav, no section titles, no
+      captions telling you what you are looking at. The work is the content. */
 
 :root {
   --paper: #ffffff;
   --ink: #111111;
   --grey: #767676;
-  --rule: #111111;
-  --rule-light: #d4d4d4;
   --plate: #ebebeb;
 
   --grotesque: "Helvetica Neue", Helvetica, Arial, "Liberation Sans", sans-serif;
 
   --margin: clamp(1rem, 3.2vw, 3.5rem);
   --gap: clamp(0.75rem, 1.6vw, 1.75rem);
-  --stack: clamp(3.5rem, 9vh, 7rem);
+  --stack: clamp(4rem, 11vh, 8rem);
 
   /* Four sizes for the whole site. Adding a fifth needs a reason. */
   --t-display: clamp(2.75rem, 11.5vw, 10rem);
@@ -61,7 +62,7 @@ img {
 a {
   color: inherit;
   text-decoration: none;
-  border-bottom: 1px solid var(--rule-light);
+  border-bottom: 1px solid #cfcfcf;
 }
 
 a:hover {
@@ -73,23 +74,9 @@ a:hover {
   outline-offset: 2px;
 }
 
-.skip {
-  position: absolute;
-  left: -9999px;
-  top: 0;
-  background: var(--ink);
-  color: var(--paper);
-  padding: 0.75rem 1rem;
-  z-index: 100;
-}
-
-.skip:focus {
-  left: 0;
-}
-
 /* ---------- the grid ----------
-   Twelve columns, one gutter, one margin. Everything on the page is placed on
-   it. Nothing is centred. */
+   Twelve columns, one gutter, one margin. Everything is placed on it by column
+   span. Nothing is centred. */
 
 .grid {
   display: grid;
@@ -100,81 +87,24 @@ a:hover {
 }
 
 /* The single typographic mannerism: uppercase at one size, one tracking. */
-.label,
-.masthead__nav,
-.section__index,
-.section__label,
-.plate figcaption,
+.hero__contact,
 .record__meta,
-.embed__label,
-.embed__meta,
-.work__meta,
-.quote cite,
-.credits__year,
-.foot {
+.quote cite {
   font-size: var(--t-label);
-  line-height: 1.3;
+  line-height: 1.5;
   letter-spacing: var(--track-label);
   text-transform: uppercase;
 }
 
-/* ---------- masthead ---------- */
-
-.masthead {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  align-items: baseline;
-  padding-top: 0.9rem;
-  padding-bottom: 0.9rem;
-  background: var(--paper);
-  border-bottom: 1px solid var(--rule);
-}
-
-.masthead__name {
-  grid-column: 1 / 4;
-  font-size: var(--t-label);
-  letter-spacing: var(--track-label);
-  text-transform: uppercase;
-  font-weight: 700;
-  border: 0;
-}
-
-.masthead__nav {
-  grid-column: 4 / 13;
-  display: flex;
-  gap: var(--gap);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.masthead__nav li {
-  flex: 1 1 0;
-  min-width: 0;
-}
-
-.masthead__nav a {
-  border: 0;
-  color: var(--grey);
-  white-space: nowrap;
-}
-
-.masthead__nav a:hover,
-.masthead__nav a.is-active {
-  color: var(--ink);
-}
-
-/* ---------- hero ---------- */
+/* ---------- title and contact ---------- */
 
 .hero {
   padding-top: clamp(2.5rem, 9vh, 6.5rem);
-  padding-bottom: clamp(2.5rem, 8vh, 5.5rem);
-  align-items: end;
+  padding-bottom: clamp(2.5rem, 9vh, 6rem);
 }
 
 .hero__name {
-  grid-column: 1 / 11;
+  grid-column: 1 / 13;
   margin: 0;
   font-size: var(--t-display);
   font-weight: 700;
@@ -182,22 +112,21 @@ a:hover {
   letter-spacing: -0.035em;
 }
 
-/* The setting note sits in the right margin, the way a caption does. */
-.hero__meta {
-  grid-column: 11 / 13;
-  margin: 0 0 0.5rem;
-  font-size: var(--t-label);
-  line-height: 1.45;
-  letter-spacing: var(--track-label);
-  text-transform: uppercase;
+/* Contact sits under the name, which is the only place it needs to be. */
+.hero__contact {
+  grid-column: 1 / 9;
+  margin: 1.75rem 0 0;
   color: var(--grey);
 }
 
-/* ---------- plates (photographs) ---------- */
+.hero__contact a {
+  color: var(--ink);
+}
+
+/* ---------- plate ---------- */
 
 .plate {
   margin: 0;
-  border-top: 1px solid var(--rule);
 }
 
 .plate img {
@@ -207,45 +136,15 @@ a:hover {
   background: var(--plate);
 }
 
-.plate figcaption {
-  padding: 0.6rem var(--margin) 0;
-  color: var(--grey);
-}
-
 /* ---------- sections ---------- */
 
 .section {
   padding-top: var(--stack);
   padding-bottom: var(--stack);
-  border-top: 1px solid var(--rule);
   align-items: start;
 }
 
-.section__head {
-  grid-column: 1 / 3;
-}
-
-.section__index {
-  margin: 0;
-  color: var(--grey);
-}
-
-.section__label {
-  margin: 0;
-  font-weight: 700;
-}
-
-.section__body {
-  grid-column: 3 / 13;
-}
-
 /* ---------- biography ---------- */
-
-.bio {
-  display: grid;
-  grid-template-columns: repeat(10, minmax(0, 1fr));
-  column-gap: var(--gap);
-}
 
 .bio__portrait {
   grid-column: 1 / 5;
@@ -259,16 +158,8 @@ a:hover {
   background: var(--plate);
 }
 
-.bio__portrait figcaption {
-  margin-top: 0.6rem;
-  font-size: var(--t-label);
-  letter-spacing: var(--track-label);
-  text-transform: uppercase;
-  color: var(--grey);
-}
-
 .bio__text {
-  grid-column: 6 / 11;
+  grid-column: 6 / 12;
 }
 
 .bio__text p {
@@ -282,34 +173,29 @@ a:hover {
   margin-bottom: 1.5em !important;
 }
 
-.subhead {
-  margin: 2.75rem 0 0.9rem;
-  font-size: var(--t-label);
-  letter-spacing: var(--track-label);
-  text-transform: uppercase;
-  font-weight: 700;
-}
-
-.prizes {
-  list-style: none;
-  margin: 0;
+.quote {
+  margin: 2.5rem 0 0;
   padding: 0;
 }
 
-.prizes li {
-  padding: 0.35rem 0;
-  border-bottom: 1px solid var(--rule-light);
+.quote p {
+  margin: 0 0 0.5rem;
+  font-size: var(--t-lede);
+  line-height: 1.25;
+  letter-spacing: -0.015em;
 }
 
-.prizes li:first-child {
-  border-top: 1px solid var(--rule-light);
+.quote cite {
+  font-style: normal;
+  color: var(--grey);
 }
 
 /* ---------- records ---------- */
 
 .records {
+  grid-column: 1 / 13;
   display: grid;
-  grid-template-columns: repeat(10, minmax(0, 1fr));
+  grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: var(--gap);
   row-gap: 2.5rem;
   list-style: none;
@@ -318,7 +204,7 @@ a:hover {
 }
 
 .record {
-  grid-column: span 2;
+  grid-column: span 3;
 }
 
 .record__link {
@@ -344,68 +230,12 @@ a:hover {
   color: var(--grey);
 }
 
-/* ---------- press ---------- */
-
-.press {
-  margin-top: 3.5rem;
-  display: grid;
-  grid-template-columns: repeat(10, minmax(0, 1fr));
-  column-gap: var(--gap);
-}
-
-.press > * {
-  grid-column: 1 / 8;
-}
-
-.quote {
-  margin: 0;
-  padding: 1rem 0;
-  border-top: 1px solid var(--rule-light);
-}
-
-.quote p {
-  margin: 0 0 0.5rem;
-  font-size: var(--t-lede);
-  line-height: 1.25;
-  letter-spacing: -0.015em;
-}
-
-.quote cite {
-  font-style: normal;
-  color: var(--grey);
-}
-
-/* ---------- credits ---------- */
-
-.credits {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(10, minmax(0, 1fr));
-  column-gap: var(--gap);
-  border-top: 1px solid var(--rule);
-}
-
-.credits li {
-  grid-column: span 5;
-  display: grid;
-  grid-template-columns: 3.5rem 1fr;
-  gap: var(--gap);
-  padding: 0.4rem 0;
-  border-bottom: 1px solid var(--rule-light);
-}
-
-.credits__year {
-  color: var(--grey);
-  padding-top: 0.28em;
-}
-
 /* ---------- video ---------- */
 
-.embeds {
+.films {
+  grid-column: 1 / 13;
   display: grid;
-  grid-template-columns: repeat(10, minmax(0, 1fr));
+  grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: var(--gap);
   row-gap: var(--gap);
   list-style: none;
@@ -413,258 +243,38 @@ a:hover {
   padding: 0;
 }
 
-.embed {
-  grid-column: span 5;
+.film {
+  grid-column: span 6;
 }
 
-.embed__facade {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
-  min-height: 10rem;
-  padding: 1.1rem;
-  background: transparent;
-  border: 1px solid var(--rule);
-  font: inherit;
-  color: inherit;
-  text-align: left;
-  cursor: pointer;
-}
-
-.embed__facade:hover {
-  background: var(--ink);
-  color: var(--paper);
-}
-
-.embed__label,
-.embed__meta {
-  color: var(--grey);
-}
-
-.embed__facade:hover .embed__label,
-.embed__facade:hover .embed__meta {
-  color: var(--paper);
-}
-
-.embed__title {
-  font-size: var(--t-lede);
-  line-height: 1.2;
-  letter-spacing: -0.015em;
-  margin: 0.35rem 0 0.25rem;
-}
-
-.embed__play {
-  margin-top: auto;
-  padding-top: 1.25rem;
+.film iframe {
   display: block;
-}
-
-.embed__play::before {
-  content: "";
-  display: block;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 0.34rem 0 0.34rem 0.58rem;
-  border-color: transparent transparent transparent currentColor;
-}
-
-.embed iframe {
   width: 100%;
   aspect-ratio: 16 / 9;
-  border: 1px solid var(--rule);
-  display: block;
+  border: 0;
   background: var(--plate);
 }
 
-/* ---------- groups ---------- */
-
-.works {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  border-top: 1px solid var(--rule);
-}
-
-.work {
-  display: grid;
-  grid-template-columns: repeat(10, minmax(0, 1fr));
-  column-gap: var(--gap);
-  padding: 1.1rem 0;
-  border-bottom: 1px solid var(--rule-light);
-}
-
-/* Title and role are one cell, so a long description on the right can never
-   push the role away from the name it belongs to. */
-.work__head {
-  grid-column: 1 / 5;
-  min-width: 0;
-}
-
-.work__title {
-  margin: 0;
-  font-size: var(--t-body);
-  font-weight: 700;
-}
-
-.work__title a {
-  border: 0;
-}
-
-.work__title a:hover {
-  border-bottom: 1px solid var(--ink);
-}
-
-.work__meta {
-  margin: 0.2rem 0 0;
-  color: var(--grey);
-}
-
-.work__text {
-  grid-column: 5 / 11;
-  margin: 0;
-}
-
-.work__text p {
-  margin: 0 0 0.7em;
-}
-
-.work__text p:last-child {
-  margin-bottom: 0;
-}
-
-.work__text .quote {
-  border-top: 0;
-  padding: 0.6rem 0 0;
-}
-
-.work__text .quote p {
-  font-size: var(--t-body);
-  line-height: 1.5;
-  letter-spacing: 0;
-}
-
-/* ---------- contact ---------- */
-
-.contact__big {
-  margin: 0;
-  font-size: var(--t-lede);
-  line-height: 1.2;
-  letter-spacing: -0.015em;
-  word-break: break-word;
-}
-
-.contact__links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0 var(--gap);
-  margin: 2rem 0 0;
-}
-
-/* ---------- footer ---------- */
-
-.foot {
-  padding-top: 1.1rem;
-  padding-bottom: 2.5rem;
-  border-top: 1px solid var(--rule);
-  color: var(--grey);
-}
-
-.foot p {
-  margin: 0;
-}
-
-.foot p:first-child {
-  grid-column: 1 / 7;
-}
-
-.foot p:last-child {
-  grid-column: 7 / 13;
-  text-align: right;
-}
-
-.foot a {
-  border: 0;
-}
-
 /* ---------- responsive ----------
-   The grid does not disappear on a phone, it narrows: 12 columns to 6 to 1. */
+   The grid narrows, it does not disappear: 12 columns to 2. */
 
 @media (max-width: 1000px) {
-  .section__head {
-    grid-column: 1 / 13;
-    position: static;
-    margin-bottom: 1.75rem;
-    display: flex;
-    gap: 0.75rem;
-  }
-
-  .section__body {
-    grid-column: 1 / 13;
-  }
-
-  .bio__portrait {
-    grid-column: 1 / 5;
-  }
-
   .bio__text {
-    grid-column: 5 / 11;
+    grid-column: 6 / 13;
   }
 
   .record {
-    grid-column: span 3;
-  }
-
-  .press > * {
-    grid-column: 1 / 11;
-  }
-
-  .credits li {
-    grid-column: span 10;
+    grid-column: span 6;
   }
 }
 
 @media (max-width: 700px) {
-  .masthead__name {
-    display: none;
-  }
-
-  /* Five labels, one line, down to 320px. Equal-width flex tracks force each
-     item to its content width and overflowed the last one, so the tracks go
-     and the row distributes instead. Wrap is a genuine safety net. */
-  .masthead__nav {
-    grid-column: 1 / 13;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 0.35rem 0.4rem;
-    font-size: 0.625rem;
-    letter-spacing: 0.04em;
-  }
-
-  .masthead__nav li {
-    flex: 0 0 auto;
-  }
-
-  .hero__name {
-    grid-column: 1 / 13;
-  }
-
-  .hero__meta {
-    grid-column: 1 / 13;
-    margin: 1.25rem 0 0;
-  }
-
   .plate img {
     aspect-ratio: 4 / 3;
   }
 
-  .bio,
   .records,
-  .press,
-  .credits,
-  .embeds,
-  .work {
+  .films {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -675,10 +285,8 @@ a:hover {
   }
 
   .bio__text,
-  .press > *,
-  .work__head,
-  .work__text {
-    grid-column: 1 / 3;
+  .hero__contact {
+    grid-column: 1 / 13;
   }
 
   /* Square sleeves stay two-up: one per row is absurdly large. */
@@ -686,22 +294,7 @@ a:hover {
     grid-column: span 1;
   }
 
-  .credits li,
-  .embed {
+  .film {
     grid-column: span 2;
-  }
-
-  .work__text {
-    margin-top: 0.6rem;
-  }
-
-  .foot p:first-child,
-  .foot p:last-child {
-    grid-column: 1 / 13;
-    text-align: left;
-  }
-
-  .foot p:last-child {
-    margin-top: 0.4rem;
   }
 }

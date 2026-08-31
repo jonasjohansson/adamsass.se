@@ -19,25 +19,31 @@ Swiss / International Typographic Style. Josef Müller-Brockmann and Vignelli's
 Unigrid are the reference, not a "clean modern website".
 
 - **No motion. None.** No transitions, no fades, no scroll reveals, no smooth
-  scrolling, no hover animations, no sticky labels that slide. State changes are
-  instant. If you are reaching for `transition`, the answer is different spacing.
-- **No webfont.** Helvetica, Arial and Liberation Sans are metric siblings and
-  already installed. The page makes zero third-party requests. Do not add a font
-  link; do not swap in a Google approximation of a grotesque.
-- **The 12-column grid is the layout.** `.grid` sets it, everything is placed on
-  it by column span, nothing is centred, all text is flush left ragged right.
-  Section labels sit in columns 1 to 3, content in 3 to 13. Sub-grids inside a
-  section body are ten columns, matching the body's width.
-- **Four type sizes**, set as tokens: display, lede, body, label. A fifth needs a
-  reason. Weight is 400 or 700 only, because Arial has no medium.
-- **Black on white.** No accent colour. The record sleeves are the only colour on
-  the page and the photographs are black and white.
-- Rules carry the structure: 1px black between sections, 1px light grey between
-  rows inside a list.
-- One mannerism: uppercase at `--t-label` with `--track-label`. Set once in a
-  shared rule, never improvised per component.
-- No copy explains a section. If a heading needs a subtitle saying what the
-  section contains, delete the subtitle.
+  scrolling, no hover animations, nothing sticky. If you are reaching for
+  `transition`, the answer is different spacing.
+- **No webfont, no JavaScript.** Helvetica, Arial and Liberation Sans are metric
+  siblings and already installed. The page has no script file at all. The only
+  third-party requests are the four video players.
+- **No rules.** Not one hairline on the page. Space separates things. A column
+  of hairlines down a list is decoration pretending to be structure.
+- **Nothing explains the page.** No nav, no section titles, no numbered labels,
+  no photo captions, no footer, no "back to top". If you are about to add a
+  heading that says what the section below contains, that is the fluff Jonas
+  keeps deleting. The work is the content.
+- **The 12-column grid is the layout.** `.grid` sets it, everything is placed by
+  column span, nothing is centred, all text is flush left ragged right.
+- **Four type sizes**, set as tokens. A fifth needs a reason. Weight is 400 or
+  700 only, because Arial has no medium.
+- **Black on white.** No accent colour. The sleeves are the only colour on the
+  page and the photographs are black and white.
+
+## What has been cut, and why
+Do not reinstate these without being asked. Each was removed as fluff:
+the hero's "Trumpet / Composition / Malmö" note; visible photo credits;
+numbered section labels; a Groups section that restated the bio; a sixteen-row
+"Also appears on" table; a prizes table; two of three press quotes; the nav;
+the footer. The prizes, groups and credits are now sentences in the bio, which
+is the right home for them: prose reads better than a table of the same facts.
 
 ## Content rules
 - Every fact on the page traces to a file Adam put in the shared drive at
@@ -48,23 +54,16 @@ Unigrid are the reference, not a "clean modern website".
 - Copy in English. No em or en dashes: use commas, periods, colons.
 
 ## Gotchas
-- `.credits li` is a flex row. A bare `<em>` inside one becomes its own flex
-  item and picks up the row gap on both sides, which reads as a typo. Wrap
-  credit text in `.credits__what`.
-- In `.work`, the title and its role line live together in `.work__head`. They
-  used to be separate grid children with the description spanning two rows,
-  which let a long description stretch the rows and float the role line away
-  from the name it belongs to.
 - CSS shorthand `gap` on a grid sets the row gap as well as the column gap.
   Check both whenever a label drifts from its heading.
-- Five nav labels have to fit one line at 320px. This broke twice: once from
-  tracking that was too wide, once from `flex: 1 1 0` tracks forcing each item
-  to its content width and pushing the fifth out of view. Measure
-  `#nav li` bounding boxes at 320 and 390 after any nav change; do not judge it
-  from a screenshot, the overflowing item is invisible.
-- The section body is ten columns, so a record sleeve spans two, giving five
-  modules a row with four filled. Span three fits only three and wraps the
-  fourth onto a row by itself.
+- A bare `<em>` inside a flex row becomes its own flex item and picks up the row
+  gap on both sides, which reads as a typo. Wrap such text in one element.
+- The old nav was clipped at 320px three separate times, each from a different
+  cause. It is gone now. If a nav ever comes back: an overflowing flex item is
+  invisible in a screenshot, and headless Chrome and an in-page iframe measured
+  the same nav differently because of a font fallback, so measure in both.
+- Twelve columns divide by four, so a sleeve spans three. When the grid was ten
+  columns wide, span three fitted only three sleeves and wrapped the fourth.
 - A full-page headless screenshot with a very tall window will not reveal the
   last sections, because the scroll-reveal observer uses a negative bottom
   `rootMargin`. Pass `--force-prefers-reduced-motion` when screenshotting.
