@@ -61,8 +61,18 @@ link, verify the same way; a 200 proves nothing there.
 1. **Photo credits.** Mattias Foto and Maja Gallstad shot the two photographs.
    Their credits are HTML comments, not printed on the page, at Jonas's
    request. Worth checking neither photographer expects a visible credit.
-2. **The email** is `adsass98@gmail.com`, taken from correspondence rather than
-   from the folder Adam uploaded. Confirm it is the address he wants public.
+2. **The domain cannot receive mail yet.** The page shows `info@adamsass.se`,
+   but `adamsass.se` has **no MX records**, so anything sent there bounces.
+   There is an SPF record pointing at `_spf.mx.cloudflare.net`, so Cloudflare
+   Email Routing looks half configured: finish it in Cloudflare (Email >
+   Email Routing), which adds the three `route*.mx.cloudflare.net` MX records
+   and forwards to a real inbox. Check with:
+
+   ```sh
+   dig +short adamsass.se MX
+   ```
+
+   Empty output means the address on the site is dead.
 3. **Favicons.** Generate the raster set and uncomment the block in `<head>`.
 4. **Live dates.** There is no gigs section. He played 82 concerts in 2025, so
    one may be worth it, but it needs someone to keep it current.
