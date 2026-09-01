@@ -32,11 +32,18 @@ thing standing between a bad save and the live site, so keep it honest.
 
 ### When a save does not appear
 
-**Adam cannot see this himself, and that is the weak point.** He has no GitHub
-account, so a failed build is invisible to him: his change simply never shows
-up. The failure notification goes to Jonas, as the person who installed the
-app. So if Adam says an edit did not take, look at the Actions tab before
-looking at anything else.
+Most bad input never gets this far. `.pages.yml` carries `pattern` and `min`/
+`max` rules with their own messages, so the CMS refuses the save in front of
+Adam, with a sentence telling him what to fix, rather than letting CI fail
+behind him. That covers the email, both kinds of link, the YouTube address, the
+year, and a markdown link written without `https://`.
+
+What it cannot cover is a cover image that is too small or unreadable, and a
+duplicate sleeve filename: those need the file itself, so only the build can
+catch them. **For those, Adam cannot see the failure.** He has no GitHub
+account, so his change simply never shows up, and the notification goes to
+Jonas as the person who installed the app. If Adam says an edit did not take,
+look at the Actions tab before looking at anything else.
 
 Every message the build produces names the field and what to do, in English,
 because Adam is the one who has to act on it. If a failure ever produces a

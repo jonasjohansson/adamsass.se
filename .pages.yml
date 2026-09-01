@@ -20,6 +20,9 @@ content:
         label: Email
         type: string
         required: true
+        pattern:
+          regex: '^[^@\s]+@[^@\s]+\.[^@\s]+$'
+          message: Write a full email address, like info@adamsass.se
       - name: city
         label: City
         type: string
@@ -29,6 +32,9 @@ content:
         type: string
         required: true
         description: The Google Docs PDF export link.
+        pattern:
+          regex: '^https://\S+$'
+          message: Paste the whole address, starting with https://
       - name: description
         label: Search engine description
         type: text
@@ -48,6 +54,12 @@ content:
           One entry per paragraph. You can write *italic* for album titles,
           **bold**, and [link text](https://example.com). Do not put one inside
           another.
+        pattern:
+          regex: '^(?![\s\S]*\]\((?!https://|mailto:))[\s\S]*$'
+          message: >-
+            A link needs its whole address, starting with https:// . Write
+            [floats](https://floatsmusik.bandcamp.com/), not
+            [floats](floatsmusik.bandcamp.com).
       - name: quote
         label: Press quote
         type: object
@@ -57,11 +69,17 @@ content:
             type: text
             required: true
             description: Never reword a quote. Trim it if you must.
+            pattern:
+              regex: '^(?![\s\S]*\]\((?!https://|mailto:))[\s\S]*$'
+              message: A link needs its whole address, starting with https://
           - name: source
             label: Publication
             type: string
             required: true
             description: For example, Jazz Journal on *Viewpoint*.
+            pattern:
+              regex: '^(?![\s\S]*\]\((?!https://|mailto:))[\s\S]*$'
+              message: A link needs its whole address, starting with https://
 
   - name: records
     label: Records
@@ -92,11 +110,17 @@ content:
             label: Year
             type: number
             required: true
+            options:
+              min: 1900
+              max: 2100
           - name: link
             label: Link
             type: string
             required: true
             description: Where the album can be heard or bought.
+            pattern:
+              regex: '^https://\S+$'
+              message: Paste the whole address, starting with https://
           - name: cover
             label: Cover
             type: image
@@ -124,6 +148,11 @@ content:
             type: string
             required: true
             description: Paste the address from the browser. Any YouTube link works.
+            pattern:
+              regex: '^\S*(youtube\.com/watch\?(.*&)?v=[A-Za-z0-9_-]{11}|youtu\.be/[A-Za-z0-9_-]{11}|youtube(-nocookie)?\.com/embed/[A-Za-z0-9_-]{11})\S*$'
+              message: >-
+                That does not look like a YouTube address. Open the video on
+                YouTube and copy the address from the browser bar.
           - name: title
             label: Title
             type: string
