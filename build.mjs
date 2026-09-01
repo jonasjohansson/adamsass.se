@@ -40,7 +40,7 @@ const { videos } = await read('videos');
 const covers = await listCovers();
 
 // Refusing to build is what keeps the previous good page serving.
-const errors = validate({ site, records, videos, covers });
+const errors = await validate({ site, records, videos, covers });
 if (errors.length) {
   fail(`the content is not valid.\n\n${errors.map((e) => `  - ${e}`).join('\n')}`);
 }
