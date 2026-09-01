@@ -1,0 +1,13 @@
+{
+  "name": "adamsass.se",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node --test test/"
+  },
+  "dependencies": {
+    "sharp": "^0.34.0",
+    "yaml": "^2.7.0"
+  }
+}
