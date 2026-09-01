@@ -43,9 +43,14 @@ rule is that anything Adam can type becomes a sentence, not a trace.
 
 Two states worth knowing, neither of them a problem:
 
-- A push that says "Superseded by a newer content commit" means two saves
-  landed close together. The later run rebuilds from the newer content and
-  publishes it. Nothing is lost.
+- A log line saying "Push rejected: newer content landed. Rebuilding on it."
+  means two saves landed close together. The run resets onto the newer content,
+  rebuilds and pushes that. Nothing is lost, and both edits are in the page.
+  Do not assume a second run will tidy up after a rejected push: two saves
+  seconds apart on 1 Sep 2026 produced only **one** run, whose push was
+  rejected and whose rebuilt page was dropped while the Action still reported
+  success. The site sat on a stale `index.html` until it was rebuilt by hand.
+  That is why the build recovers inside its own run.
 - Deleting a record leaves its original in `assets/img/covers/src/` and its
   four derivatives behind. Nothing points at them and they cost only disk.
   Delete them by hand if it ever bothers you.
