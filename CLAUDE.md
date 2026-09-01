@@ -15,7 +15,7 @@ the site live from the repo root.
 - `content/*.yml` — all the copy. Adam edits these in Pages CMS, not by hand
 - `build.mjs`, `lib/` — renders `index.html` and the cover derivatives
 - `index.html` — generated. Do not edit it, edit `lib/template.mjs`
-- `assets/style.css` — all styles. Variables at the top, breakpoints at 1100px and 720px
+- `assets/style.css` — all styles. Variables at the top, breakpoints at 1000px and 700px
 - `assets/img/covers/src/` — cover originals. The build makes the 300 and 600
   sizes, and `covers/.manifest.json` records which originals they were made from
 - `.pages.yml` — the fields Adam sees in the CMS. It is his whole interface
@@ -77,9 +77,6 @@ is the right home for them: prose reads better than a table of the same facts.
   the same nav differently because of a font fallback, so measure in both.
 - Twelve columns divide by four, so a sleeve spans three. When the grid was ten
   columns wide, span three fitted only three sleeves and wrapped the fourth.
-- A full-page headless screenshot with a very tall window will not reveal the
-  last sections, because the scroll-reveal observer uses a negative bottom
-  `rootMargin`. Pass `--force-prefers-reduced-motion` when screenshotting.
 - `index.html` is generated. Editing it directly works until the next content
   change overwrites it. Edit `lib/template.mjs` instead.
 - File timestamps are worthless on the Action. `actions/checkout` writes the

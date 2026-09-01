@@ -21,11 +21,39 @@ the type scale and the no-motion rule are not reachable from the CMS.
 
 Saving commits to `main`, which runs `.github/workflows/build.yml`: it runs the
 tests, renders `index.html` from the content files, generates any missing cover
-sizes, and commits the result. A change is live in about a minute.
+sizes, and commits the result. GitHub Pages then does its own deploy, so a
+change takes a couple of minutes to appear, not seconds.
 
 If the content is invalid the build refuses to run, nothing is committed, and
 the previous page keeps serving. That is `lib/validate.mjs`, and it is the only
 thing standing between a bad save and the live site, so keep it honest.
+
+### When a save does not appear
+
+**Adam cannot see this himself, and that is the weak point.** He has no GitHub
+account, so a failed build is invisible to him: his change simply never shows
+up. The failure notification goes to Jonas, as the person who installed the
+app. So if Adam says an edit did not take, look at the Actions tab before
+looking at anything else.
+
+Every message the build produces names the field and what to do, in English,
+because Adam is the one who has to act on it. If a failure ever produces a
+stack trace instead, that is a bug in `lib/validate.mjs` or `build.mjs`: the
+rule is that anything Adam can type becomes a sentence, not a trace.
+
+Two states worth knowing, neither of them a problem:
+
+- A push that says "Superseded by a newer content commit" means two saves
+  landed close together. The later run rebuilds from the newer content and
+  publishes it. Nothing is lost.
+- Deleting a record leaves its original in `assets/img/covers/src/` and its
+  four derivatives behind. Nothing points at them and they cost only disk.
+  Delete them by hand if it ever bothers you.
+
+After any of Adam's saves, the local `main` is a bot commit behind. Pull before
+pushing. If a local `npm run build` has meanwhile produced a different
+`index.html`, take the remote copy and rebuild rather than resolving it by
+hand: it is a generated file, so there is nothing in it worth merging.
 
 ## Building
 

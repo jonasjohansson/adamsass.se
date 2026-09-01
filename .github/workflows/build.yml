@@ -47,5 +47,8 @@ jobs:
             echo "Nothing changed."
           else
             git commit -m "Build the site"
-            git push
+            # A second save landing mid-run leaves this push behind the remote.
+            # The queued run rebuilds from the newer content and pushes that,
+            # so being superseded is the system working, not a failure.
+            git push || echo "Superseded by a newer content commit; the queued run will handle it."
           fi

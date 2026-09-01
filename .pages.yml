@@ -102,8 +102,9 @@ content:
             type: image
             required: true
             description: >-
-              A square image, at least 600 by 600. The site makes the smaller
-              versions itself.
+              At least 600 by 600 pixels. Square is best: anything taller or
+              wider is cropped to a square from the middle. The site makes the
+              smaller versions itself.
 
   - name: videos
     label: Videos
