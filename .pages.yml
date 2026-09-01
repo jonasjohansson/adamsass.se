@@ -1,0 +1,119 @@
+media:
+  input: assets/img/covers/src
+  output: assets/img/covers/src
+  extensions: [jpg, jpeg, png]
+
+content:
+  - name: site
+    label: About
+    path: content/site.yml
+    type: file
+    fields:
+      - name: email
+        label: Email
+        type: string
+        required: true
+      - name: city
+        label: City
+        type: string
+        required: true
+      - name: cv_url
+        label: CV link
+        type: string
+        required: true
+        description: The Google Docs PDF export link.
+      - name: description
+        label: Search engine description
+        type: text
+        required: true
+        description: One or two sentences. Shown in Google results.
+      - name: short_description
+        label: Short description
+        type: text
+        required: true
+        description: Shown when someone shares the site on social media.
+      - name: bio
+        label: Biography
+        type: string
+        list: true
+        required: true
+        description: >-
+          One entry per paragraph. You can write *italic* for album titles,
+          **bold**, and [link text](https://example.com). Do not put one inside
+          another.
+      - name: quote
+        label: Press quote
+        type: object
+        fields:
+          - name: text
+            label: Quote
+            type: text
+            required: true
+            description: Never reword a quote. Trim it if you must.
+          - name: source
+            label: Publication
+            type: string
+            required: true
+            description: For example, Jazz Journal on *Viewpoint*.
+
+  - name: records
+    label: Records
+    path: content/records.yml
+    type: file
+    fields:
+      - name: records
+        label: Records
+        type: object
+        list: true
+        fields:
+          - name: title
+            label: Album title
+            type: string
+            required: true
+          - name: band
+            label: Band
+            type: string
+            required: true
+          - name: label
+            label: Record label
+            type: string
+            required: true
+          - name: year
+            label: Year
+            type: number
+            required: true
+          - name: link
+            label: Link
+            type: string
+            required: true
+            description: Where the album can be heard or bought.
+          - name: cover
+            label: Cover
+            type: image
+            required: true
+            description: >-
+              A square image, at least 600 by 600. The site makes the smaller
+              versions itself.
+
+  - name: videos
+    label: Videos
+    path: content/videos.yml
+    type: file
+    fields:
+      - name: videos
+        label: Videos
+        type: object
+        list: true
+        fields:
+          - name: url
+            label: YouTube link
+            type: string
+            required: true
+            description: Paste the address from the browser. Any YouTube link works.
+          - name: title
+            label: Title
+            type: string
+            required: true
+            description: >-
+              Describes the video for screen readers and search engines. It is
+              not shown on the page.
