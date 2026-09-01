@@ -2,15 +2,46 @@
 
 Personal site for **Adam Sass**, trumpet player and composer in Malmö.
 
-One page. Vanilla HTML and CSS, no build step, no framework, no CMS, **no
-JavaScript and no webfont**. The only third-party requests are the four video
-players.
+One page. Vanilla HTML and CSS, no framework, **no JavaScript on the page and
+no webfont**. The only third-party requests are the four video players.
 
 Deploys to https://adamsass.se/ on push to `main`. GitHub Pages is set to
 **Deploy from a branch** (`main`, `/`), so it serves the repo root directly.
-There is no Action and no build: the site has no build step, so a workflow
-would only add moving parts. Branch deploy also picks up the `CNAME` file by
-itself, which the Actions build type does not.
+Branch deploy also picks up the `CNAME` file by itself, which the Actions build
+type does not, which is why it stays that way.
+
+## Adam edits this himself
+
+The copy lives in `content/*.yml`, and Adam edits it at
+[app.pagescms.org](https://app.pagescms.org) through [Pages
+CMS](https://pagescms.org). He signs in with an emailed magic link and needs no
+GitHub account. `.pages.yml` defines the three things he sees, About, Records
+and Videos, and it is his entire interface: he never touches HTML, so the grid,
+the type scale and the no-motion rule are not reachable from the CMS.
+
+Saving commits to `main`, which runs `.github/workflows/build.yml`: it runs the
+tests, renders `index.html` from the content files, generates any missing cover
+sizes, and commits the result. A change is live in about a minute.
+
+If the content is invalid the build refuses to run, nothing is committed, and
+the previous page keeps serving. That is `lib/validate.mjs`, and it is the only
+thing standing between a bad save and the live site, so keep it honest.
+
+## Building
+
+```sh
+npm install     # once
+npm run build   # regenerate index.html and any missing cover sizes
+npm test        # unit tests
+```
+
+`index.html` is **generated**. Do not edit it: edit `content/*.yml` for copy, or
+`lib/template.mjs` for markup. Cover originals go in `assets/img/covers/src/`
+and the build makes the 300 and 600 pixel JPEG and WebP versions from them.
+
+Adam's markdown is inline only, on purpose: `*italic*`, `**bold**` and
+`[label](url)`. Block level markdown would let a heading in, and with it a
+fifth type size. It also does not nest, so do not write `**a *b* c**`.
 
 ## Local preview
 
@@ -26,11 +57,16 @@ well as from the domain root.
 
 | Path | What it is |
 |---|---|
-| `index.html` | The whole page. All copy lives here. |
+| `content/*.yml` | All the copy. What Adam edits. |
+| `.pages.yml` | The fields Adam sees in the CMS. |
+| `build.mjs`, `lib/` | Renders `index.html` and the cover sizes. |
+| `index.html` | Generated. Do not edit. |
 | `assets/style.css` | All styles. Tokens at the top, breakpoints at 1000px and 700px. |
 | `assets/img/` | Hero, portrait, Open Graph card. |
-| `assets/img/covers/` | Record sleeves, JPEG plus WebP. |
-| `favicon/` | Icons. Only `favicon.svg` exists so far. |
+| `assets/img/covers/` | Generated sleeves, JPEG plus WebP. |
+| `assets/img/covers/src/` | Sleeve originals, uploaded through the CMS. |
+| `.github/workflows/build.yml` | Builds and commits the page when content changes. |
+| `favicon/` | Icons. |
 | `CNAME` | Custom domain. |
 | `robots.txt`, `sitemap.xml` | SEO. The sitemap has one URL, because there is one page. |
 

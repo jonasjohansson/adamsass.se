@@ -5,14 +5,26 @@ People In Orbit (peopleinorbit.se, also built here), co-writes in floats, and
 plays with BEQ, Vidar Orchestra and Spontaneity Quartet. He is also
 co-applicant on the Signs of Presence tour.
 
-Vanilla HTML, CSS and JS. No build step, no framework, no CMS. The repo root is
-the site: pushing to `main` uploads it straight to GitHub Pages.
+Vanilla HTML and CSS. No framework, and no JavaScript on the page. There is a
+build step, and only because Adam edits the site himself through Pages CMS:
+`content/*.yml` holds the copy and `build.mjs` renders `index.html`. A GitHub
+Action runs the build and commits the result, so pushing to `main` still puts
+the site live from the repo root.
 
 ## Files
-- `index.html` — the page, and all copy
+- `content/*.yml` — all the copy. Adam edits these in Pages CMS, not by hand
+- `build.mjs`, `lib/` — renders `index.html` and the cover derivatives
+- `index.html` — generated. Do not edit it, edit `lib/template.mjs`
 - `assets/style.css` — all styles. Variables at the top, breakpoints at 1100px and 720px
-- `assets/script.js` — nav state, scroll reveal, click-to-load embeds
-- `assets/img/`, `assets/img/covers/`, `favicon/`, `CNAME`, `.github/workflows/deploy.yml`
+- `assets/img/covers/src/` — cover originals. The build makes the 300 and 600 sizes
+- `.pages.yml` — the fields Adam sees in the CMS. It is his whole interface
+- `assets/img/`, `favicon/`, `CNAME`, `.github/workflows/build.yml`
+
+## Editing the site
+- `npm install` once, then `npm run build` to regenerate `index.html`
+- `npm test` runs the unit tests. The build refuses to run on invalid content
+- Adam edits at https://app.pagescms.org. He signs in with a magic link and has
+  no GitHub account, which is fine and deliberate
 
 ## Design system
 Swiss / International Typographic Style. Josef Müller-Brockmann and Vignelli's
@@ -67,6 +79,14 @@ is the right home for them: prose reads better than a table of the same facts.
 - A full-page headless screenshot with a very tall window will not reveal the
   last sections, because the scroll-reveal observer uses a negative bottom
   `rootMargin`. Pass `--force-prefers-reduced-motion` when screenshotting.
+- `index.html` is generated. Editing it directly works until the next content
+  change overwrites it. Edit `lib/template.mjs` instead.
+- Adam's markdown is inline only, by design: italic, bold and links. Adding
+  block level markdown would let a heading in, and with it a fifth type size.
+  It also does not nest, so `**a *b* c**` renders wrong. Do not nest markers.
+- Pages CMS commits straight to `main`, so a bad save would be live in under a
+  minute. `lib/validate.mjs` is what stops that: it fails the build, nothing is
+  pushed, and the previous `index.html` keeps serving. Keep it honest.
 
 ## Local preview
 Apache serves `/Users/jonas/GitHub` as its DocumentRoot, so this repo is already
