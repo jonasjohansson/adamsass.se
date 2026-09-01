@@ -51,6 +51,25 @@ test('rejects a javascript: URL', () => {
   assert.throws(() => inline('[x](javascript:alert(1))'), /unsupported URL/);
 });
 
+// A leading slash is a path in this repo. Two of them are a host, so
+// //evil.example.com would load from somewhere else entirely.
+test('rejects a protocol relative URL', () => {
+  assert.throws(() => inline('[x](//evil.example.com)'), /unsupported URL/);
+});
+
+test('still allows a path in this repo', () => {
+  assert.equal(
+    inline('[the CV](/assets/cv.pdf)'),
+    '<a href="/assets/cv.pdf" rel="noopener">the CV</a>'
+  );
+});
+
+// The link a musician actually types. It has to be refused somewhere, and
+// lib/validate.mjs turns this throw into a sentence naming the field.
+test('rejects a link with no scheme at all', () => {
+  assert.throws(() => inline('[CV](docs.google.com/doc/abc)'), /unsupported URL/);
+});
+
 test('leaves spaced asterisks alone', () => {
   assert.equal(inline('2 * 3 and 4 * 5'), '2 * 3 and 4 * 5');
 });

@@ -39,6 +39,26 @@ test('reports an empty bio', () => {
   assert.match(validate({ site: bad, records, videos, covers })[0], /bio/);
 });
 
+// validate used to check only that a field was not empty, so a bio holding a
+// link with no scheme passed here and threw inside render a moment later. Adam
+// got a red X on a tab he cannot see. Rendering the markdown here is the whole
+// point: whatever throws becomes a sentence naming the field.
+test('reports a bio link with no scheme instead of throwing during render', () => {
+  const bad = { ...site, bio: ['Read my [CV](docs.google.com/doc/abc).'] };
+  const errors = validate({ site: bad, records, videos, covers });
+  assert.equal(errors.length, 1, JSON.stringify(errors));
+  assert.match(errors[0], /site\.bio\[0\]/);
+  assert.match(errors[0], /https:\/\//);
+});
+
+test('reports an unrenderable press quote, and names which field', () => {
+  const text = { ...site, quote: { ...site.quote, text: '[a](javascript:alert(1))' } };
+  assert.match(validate({ site: text, records, videos, covers })[0], /site\.quote\.text/);
+
+  const source = { ...site, quote: { ...site.quote, source: '[a](ftp://x/)' } };
+  assert.match(validate({ site: source, records, videos, covers })[0], /site\.quote\.source/);
+});
+
 test('reports a record with no title', () => {
   const bad = [{ ...records[0], title: '' }];
   assert.match(validate({ site, records: bad, videos, covers })[0], /title/);
