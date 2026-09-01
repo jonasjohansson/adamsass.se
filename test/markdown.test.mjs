@@ -50,3 +50,11 @@ test('renders italic inside a link label', () => {
 test('rejects a javascript: URL', () => {
   assert.throws(() => inline('[x](javascript:alert(1))'), /unsupported URL/);
 });
+
+test('leaves spaced asterisks alone', () => {
+  assert.equal(inline('2 * 3 and 4 * 5'), '2 * 3 and 4 * 5');
+});
+
+test('still emphasises a single word', () => {
+  assert.equal(inline('*Viewpoint*'), '<em>Viewpoint</em>');
+});
