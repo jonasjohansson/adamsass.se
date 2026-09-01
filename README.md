@@ -5,10 +5,12 @@ Personal site for **Adam Sass**, trumpet player and composer in Malmö.
 One page. Vanilla HTML and CSS, no framework, **no JavaScript on the page and
 no webfont**. The only third-party requests are the four video players.
 
-Deploys to https://adamsass.se/ on push to `main`. GitHub Pages is set to
-**Deploy from a branch** (`main`, `/`), so it serves the repo root directly.
-Branch deploy also picks up the `CNAME` file by itself, which the Actions build
-type does not, which is why it stays that way.
+Deploys to https://adamsass.se/ on push to `main`, as a GitHub Pages artifact
+built by `.github/workflows/deploy.yml`. Same shape as lumenproject.se,
+elverket.com and soundsofsaving.org. The Action has `contents: read` and pushes
+nothing; `CNAME` is copied into the artifact and the custom domain is claimed on
+the Pages API, because an Actions deploy does not adopt a `CNAME` file the way
+branch deploy did.
 
 ## Adam edits this himself
 
@@ -43,34 +45,42 @@ rule is that anything Adam can type becomes a sentence, not a trace.
 
 Two states worth knowing, neither of them a problem:
 
-- A log line saying "Push rejected: newer content landed. Rebuilding on it."
-  means two saves landed close together. The run resets onto the newer content,
-  rebuilds and pushes that. Nothing is lost, and both edits are in the page.
-  Do not assume a second run will tidy up after a rejected push: two saves
-  seconds apart on 1 Sep 2026 produced only **one** run, whose push was
-  rejected and whose rebuilt page was dropped while the Action still reported
-  success. The site sat on a stale `index.html` until it was rebuilt by hand.
-  That is why the build recovers inside its own run.
+- Two saves seconds apart cancel the older run (`concurrency: cancel-in-progress`)
+  and the newer one deploys everything. Nothing is lost, because the build reads
+  whatever content is on `main` at checkout.
+
+  This used to be a real hazard. The first version of the workflow committed the
+  built page back to `main`, and on 1 Sep 2026 two saves seconds apart cost one
+  of those commits: the push was rejected, no second run was ever queued, the
+  Action reported success anyway, and the site quietly served a stale page until
+  it was rebuilt by hand. Deploying an artifact removes the failure rather than
+  handling it — there is no commit to lose. Do not reintroduce a workflow that
+  writes to the repo.
 - Deleting a record leaves its original in `assets/img/covers/src/` and its
   four derivatives behind. Nothing points at them and they cost only disk.
   Delete them by hand if it ever bothers you.
 
-After any of Adam's saves, the local `main` is a bot commit behind. Pull before
-pushing. If a local `npm run build` has meanwhile produced a different
-`index.html`, take the remote copy and rebuild rather than resolving it by
-hand: it is a generated file, so there is nothing in it worth merging.
+After any of Adam's saves the local `main` is behind by his commit, so pull
+before pushing. Nothing generated is in git, so there is nothing to conflict.
 
 ## Building
 
 ```sh
 npm install     # once
-npm run build   # regenerate index.html and any missing cover sizes
+npm run build   # write _site/
 npm test        # unit tests
 ```
 
-`index.html` is **generated**. Do not edit it: edit `content/*.yml` for copy, or
-`lib/template.mjs` for markup. Cover originals go in `assets/img/covers/src/`
-and the build makes the 300 and 600 pixel JPEG and WebP versions from them.
+The built site lands in `_site/`, which is gitignored: **nothing generated is
+committed**. Preview it at
+http://localhost/org/jonasjohansson/adamsass.se/_site/ after a build.
+
+Edit `content/*.yml` for copy, `lib/template.mjs` for markup, and
+`lib/static.mjs` to publish a file that the build does not generate. Cover
+originals go in `assets/img/covers/src/` and are the only images in git; the
+build makes the 300 and 600 pixel JPEG and WebP versions into `_site/`, and the
+Action caches them keyed on the originals so they are not re-encoded every run.
+The originals themselves are never published.
 A sleeve has to be at least 600 by 600 or the build refuses it, and which
 sleeves get remade is decided by a hash of the original's bytes, kept in
 `assets/img/covers/.manifest.json`. Not by timestamps: a checkout writes the
@@ -96,8 +106,8 @@ well as from the domain root.
 |---|---|
 | `content/*.yml` | All the copy. What Adam edits. |
 | `.pages.yml` | The fields Adam sees in the CMS. |
-| `build.mjs`, `lib/` | Renders `index.html` and the cover sizes. |
-| `index.html` | Generated. Do not edit. |
+| `build.mjs`, `lib/` | Renders the site into `_site/`. |
+| `_site/` | The built site. Generated, gitignored. |
 | `assets/style.css` | All styles. Tokens at the top, breakpoints at 1000px and 700px. |
 | `assets/img/` | Hero, portrait, Open Graph card. |
 | `assets/img/covers/` | Generated sleeves, JPEG plus WebP. |

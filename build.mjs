@@ -3,15 +3,18 @@ import { parse } from 'yaml';
 import { render } from './lib/template.mjs';
 import { validate } from './lib/validate.mjs';
 import { listCovers, buildCovers } from './lib/images.mjs';
+import { copyStatic } from './lib/static.mjs';
 
 // Adam saves straight to main, from a CMS, with no GitHub account and no way to
 // open the Actions tab. Every way this build can fail has to end as one
 // sentence naming the file and saying what to do, never a stack trace.
 function fail(problem) {
   console.error(`Cannot build the site: ${problem}`);
-  console.error('\nThe previous index.html is unchanged and still serving.');
+  console.error('\nNothing was published. The site is unchanged and still serving.');
   process.exit(1);
 }
+
+const OUT = '_site';
 
 const read = async (name) => {
   const file = `content/${name}.yml`;
@@ -52,8 +55,9 @@ try {
 }
 
 try {
-  await writeFile('index.html', render({ site, records, videos }));
+  await copyStatic(OUT);
+  await writeFile(`${OUT}/index.html`, render({ site, records, videos }));
 } catch (error) {
-  fail(`the page could not be rendered: ${error.message}`);
+  fail(`the page could not be built: ${error.message}`);
 }
-console.log('page   index.html');
+console.log(`page   ${OUT}/index.html`);

@@ -1,0 +1,54 @@
+name: Build and deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:          # manual "rebuild now" button
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# run JS actions on Node 24 (clears the actions/cache@v4 Node 20 deprecation)
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+# A newer save supersedes an older run rather than racing it. Nothing here
+# pushes, so there is no commit to lose when that happens.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test                  # fail fast on malformed content
+      # reuse the generated 300/600 JPEG and WebP sleeves across runs (keyed on
+      # the originals) so the build doesn't re-encode them every time
+      - name: Cache generated covers
+        uses: actions/cache@v4
+        with:
+          path: _site/assets/img/covers
+          key: covers-${{ hashFiles('assets/img/covers/src/**') }}
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

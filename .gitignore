@@ -2,3 +2,5 @@
 .claude/
 _scratch/
 node_modules/
+_site/
+index.html

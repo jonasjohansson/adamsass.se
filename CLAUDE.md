@@ -7,22 +7,24 @@ co-applicant on the Signs of Presence tour.
 
 Vanilla HTML and CSS. No framework, and no JavaScript on the page. There is a
 build step, and only because Adam edits the site himself through Pages CMS:
-`content/*.yml` holds the copy and `build.mjs` renders `index.html`. A GitHub
-Action runs the build and commits the result, so pushing to `main` still puts
-the site live from the repo root.
+`content/*.yml` holds the copy and `build.mjs` renders the site into `_site/`.
+A GitHub Action builds that and deploys it as a Pages artifact, the same way
+lumenproject.se, elverket.com and soundsofsaving.org work. Nothing generated is
+committed and the Action never pushes.
 
 ## Files
 - `content/*.yml` — all the copy. Adam edits these in Pages CMS, not by hand
 - `build.mjs`, `lib/` — renders `index.html` and the cover derivatives
-- `index.html` — generated. Do not edit it, edit `lib/template.mjs`
+- `_site/` — the built site. Generated, gitignored, never edited
 - `assets/style.css` — all styles. Variables at the top, breakpoints at 1000px and 700px
 - `assets/img/covers/src/` — cover originals. The build makes the 300 and 600
   sizes, and `covers/.manifest.json` records which originals they were made from
 - `.pages.yml` — the fields Adam sees in the CMS. It is his whole interface
-- `assets/img/`, `favicon/`, `CNAME`, `.github/workflows/build.yml`
+- `lib/static.mjs` — the list of files copied into `_site/` verbatim
+- `assets/img/`, `favicon/`, `CNAME`, `.github/workflows/deploy.yml`
 
 ## Editing the site
-- `npm install` once, then `npm run build` to regenerate `index.html`
+- `npm install` once, then `npm run build` to write `_site/`
 - `npm test` runs the unit tests. The build refuses to run on invalid content
 - Adam edits at https://app.pagescms.org. He signs in with a magic link and has
   no GitHub account, which is fine and deliberate
@@ -77,8 +79,11 @@ is the right home for them: prose reads better than a table of the same facts.
   the same nav differently because of a font fallback, so measure in both.
 - Twelve columns divide by four, so a sleeve spans three. When the grid was ten
   columns wide, span three fitted only three sleeves and wrapped the fourth.
-- `index.html` is generated. Editing it directly works until the next content
-  change overwrites it. Edit `lib/template.mjs` instead.
+- `index.html` is generated into `_site/` and is not in git. Edit
+  `content/*.yml` for copy or `lib/template.mjs` for markup.
+- A new file in `assets/` is not published until it is named in
+  `lib/static.mjs`. The copy list is explicit on purpose: it is what keeps the
+  cover originals, `node_modules` and the plans out of the deployed site.
 - File timestamps are worthless on the Action. `actions/checkout` writes the
   whole tree in one go, in path order, so `covers/src/viewpoint.jpg` is always
   written before `covers/viewpoint-600.jpg` and the derivative always looks
@@ -89,11 +94,18 @@ is the right home for them: prose reads better than a table of the same facts.
 - Adam's markdown is inline only, by design: italic, bold and links. Adding
   block level markdown would let a heading in, and with it a fifth type size.
   It also does not nest, so `**a *b* c**` renders wrong. Do not nest markers.
-- Pages CMS commits straight to `main`, so a bad save would be live in under a
-  minute. `lib/validate.mjs` is what stops that: it fails the build, nothing is
-  pushed, and the previous `index.html` keeps serving. Keep it honest.
+- Pages CMS commits straight to `main`, so a bad save would be live in minutes.
+  `lib/validate.mjs` is what stops that: it fails the build, no artifact is
+  uploaded, and the last good deploy keeps serving. Keep it honest.
+- The Action deploys an artifact and has `contents: read`. It does not push, so
+  it cannot race a save. An earlier version did commit the built page back to
+  `main`, and on 1 Sep 2026 two saves seconds apart cost one of those commits:
+  the push was rejected, the run went green anyway, and the site served a stale
+  page. Do not reintroduce a workflow that writes to the repo.
 
 ## Local preview
-Apache serves `/Users/jonas/GitHub` as its DocumentRoot, so this repo is already
-live at http://localhost/org/jonasjohansson/adamsass.se/. Do not start another
-server. Paths in `index.html` are relative so the subdirectory works.
+Run `npm run build`, then open
+http://localhost/org/jonasjohansson/adamsass.se/_site/. Apache serves
+`/Users/jonas/GitHub` as its DocumentRoot, so there is no server to start; the
+`_site/` on the end is the only difference from before. Paths are relative, so
+the subdirectory works.
