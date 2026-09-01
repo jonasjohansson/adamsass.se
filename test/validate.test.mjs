@@ -54,6 +54,32 @@ test('reports a cover that is not on disk', () => {
   assert.match(validate({ site, records: bad, videos, covers })[0], /cover/);
 });
 
+// coverSlug is many to one, and .pages.yml slugifies uploads the same way, so
+// close-away.jpg and close_away.jpg are a couple of clicks apart. Both records
+// would write the same four derivatives, the second would win, and two sleeves
+// on the page would show the same picture with nothing in the build to say so.
+test('reports two covers that would make the same image name', () => {
+  const bad = [
+    { ...records[0], title: 'Close/Away', cover: 'assets/img/covers/src/close-away.jpg' },
+    { ...records[0], title: 'Close Away', cover: 'assets/img/covers/src/close_away.jpg' },
+  ];
+  const both = new Set([
+    'assets/img/covers/src/close-away.jpg',
+    'assets/img/covers/src/close_away.jpg',
+  ]);
+  const errors = validate({ site, records: bad, videos, covers: both });
+  assert.equal(errors.length, 1, JSON.stringify(errors));
+  assert.match(errors[0], /records\[1\]\.cover/);
+  assert.match(errors[0], /records\[0\]\.cover/);
+  assert.match(errors[0], /rename/i);
+});
+
+test('accepts two covers whose names really are different', () => {
+  const two = [records[0], { ...records[0], cover: 'assets/img/covers/src/filament.jpg' }];
+  const both = new Set([...covers, 'assets/img/covers/src/filament.jpg']);
+  assert.deepEqual(validate({ site, records: two, videos, covers: both }), []);
+});
+
 test('reports a link that is not https', () => {
   const bad = [{ ...records[0], link: 'ftp://example.com/' }];
   assert.match(validate({ site, records: bad, videos, covers })[0], /link/);
