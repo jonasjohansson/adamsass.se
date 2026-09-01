@@ -16,7 +16,8 @@ the site live from the repo root.
 - `build.mjs`, `lib/` — renders `index.html` and the cover derivatives
 - `index.html` — generated. Do not edit it, edit `lib/template.mjs`
 - `assets/style.css` — all styles. Variables at the top, breakpoints at 1100px and 720px
-- `assets/img/covers/src/` — cover originals. The build makes the 300 and 600 sizes
+- `assets/img/covers/src/` — cover originals. The build makes the 300 and 600
+  sizes, and `covers/.manifest.json` records which originals they were made from
 - `.pages.yml` — the fields Adam sees in the CMS. It is his whole interface
 - `assets/img/`, `favicon/`, `CNAME`, `.github/workflows/build.yml`
 
@@ -81,6 +82,13 @@ is the right home for them: prose reads better than a table of the same facts.
   `rootMargin`. Pass `--force-prefers-reduced-motion` when screenshotting.
 - `index.html` is generated. Editing it directly works until the next content
   change overwrites it. Edit `lib/template.mjs` instead.
+- File timestamps are worthless on the Action. `actions/checkout` writes the
+  whole tree in one go, in path order, so `covers/src/viewpoint.jpg` is always
+  written before `covers/viewpoint-600.jpg` and the derivative always looks
+  newer than its source. What gets rebuilt is decided by a hash of the source
+  bytes in `assets/img/covers/.manifest.json`. Rebuilding everything instead
+  would ping-pong the committed binaries: libvips encodes differently on macOS
+  and on Linux.
 - Adam's markdown is inline only, by design: italic, bold and links. Adding
   block level markdown would let a heading in, and with it a fifth type size.
   It also does not nest, so `**a *b* c**` renders wrong. Do not nest markers.

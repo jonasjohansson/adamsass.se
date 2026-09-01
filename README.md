@@ -38,6 +38,10 @@ npm test        # unit tests
 `index.html` is **generated**. Do not edit it: edit `content/*.yml` for copy, or
 `lib/template.mjs` for markup. Cover originals go in `assets/img/covers/src/`
 and the build makes the 300 and 600 pixel JPEG and WebP versions from them.
+A sleeve has to be at least 600 by 600 or the build refuses it, and which
+sleeves get remade is decided by a hash of the original's bytes, kept in
+`assets/img/covers/.manifest.json`. Not by timestamps: a checkout writes the
+whole tree at once, so on the Action a timestamp says nothing about age.
 
 Adam's markdown is inline only, on purpose: `*italic*`, `**bold**` and
 `[label](url)`. Block level markdown would let a heading in, and with it a
@@ -65,6 +69,7 @@ well as from the domain root.
 | `assets/img/` | Hero, portrait, Open Graph card. |
 | `assets/img/covers/` | Generated sleeves, JPEG plus WebP. |
 | `assets/img/covers/src/` | Sleeve originals, uploaded through the CMS. |
+| `assets/img/covers/.manifest.json` | A hash of each original. What tells the build which sleeves to remake. |
 | `.github/workflows/build.yml` | Builds and commits the page when content changes. |
 | `favicon/` | Icons. |
 | `CNAME` | Custom domain. |
