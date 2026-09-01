@@ -1,0 +1,25 @@
+records:
+  - title: Viewpoint
+    band: People In Orbit
+    label: April Records
+    year: 2026
+    link: https://peopleinorbit.bandcamp.com/album/viewpoint
+    cover: assets/img/covers/src/viewpoint.jpg
+  - title: Filament
+    band: floats
+    label: Sonde Records
+    year: 2024
+    link: https://floatsmusik.bandcamp.com/album/filament
+    cover: assets/img/covers/src/filament.jpg
+  - title: Close/Away
+    band: People In Orbit
+    label: Prophone
+    year: 2023
+    link: https://naxosdirect.se/items/close-away-1203059
+    cover: assets/img/covers/src/close-away.jpg
+  - title: Roadwork Ahead
+    band: floats
+    label: Bagissimo Records
+    year: 2020
+    link: https://floatsmusik.bandcamp.com/album/roadwork-ahead
+    cover: assets/img/covers/src/roadwork-ahead.jpg
