@@ -1,7 +1,14 @@
+# input and output are deliberately identical: that makes Pages CMS store the
+# plain repo-relative path, which is what lib/validate.mjs checks against disk
+# and what lib/images.mjs takes the slug from. Adding a leading slash to output
+# would store /assets/... and every save would fail as "cover is not on disk".
 media:
   input: assets/img/covers/src
   output: assets/img/covers/src
   extensions: [jpg, jpeg, png]
+  # Slugifies uploads. Without it a photo straight off a phone, IMG_1234.JPG,
+  # is refused for its uppercase extension with no way to fix it in the UI.
+  rename: safe
 
 content:
   - name: site
@@ -34,7 +41,7 @@ content:
         description: Shown when someone shares the site on social media.
       - name: bio
         label: Biography
-        type: string
+        type: text
         list: true
         required: true
         description: >-
@@ -64,7 +71,10 @@ content:
       - name: records
         label: Records
         type: object
-        list: true
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{title}"
         fields:
           - name: title
             label: Album title
@@ -103,7 +113,10 @@ content:
       - name: videos
         label: Videos
         type: object
-        list: true
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{title}"
         fields:
           - name: url
             label: YouTube link
